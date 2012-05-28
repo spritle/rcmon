@@ -1,0 +1,23 @@
+<div data-role="page" data-theme="b">
+  <div data-role="header" data-position="inline" data-theme="a">
+    <h1>RhoConnect Monitor</h1>
+  </div>
+
+  <div data-role="content" >
+      <form method="POST" action="<%= url_for :action => :server_login %>">
+         <div data-role="fieldcontain">
+           <label for="rho_monitor[url]" class="fieldLabel">Url</label>
+           <input type="text" id="rho_monitor[url]" name="rho_monitor[url]" <%= placeholder("Url") %> />
+         </div>
+         <div data-role="fieldcontain">
+            <label for="rho_monitor[login]" class="fieldLabel">Login</label>
+            <input type="text" id="rho_monitor[login]" name="rho_monitor[login]" <%= placeholder("Login") %> />
+         </div>
+         <div data-role="fieldcontain">
+             <label for="rho_monitor[password]" class="fieldLabel">Password</label>
+             <input type="text" id="rho_monitor[password]" name="rho_monitor[password]" <%= placeholder("Password") %> />
+         </div>
+         <input type="submit" value="Submit"/>
+       </form>
+  </div>
+</div>
