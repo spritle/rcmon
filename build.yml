@@ -9,16 +9,16 @@ applog: rholog.txt
 iphone:
   configuration: Release
   sdk: iphonesimulator5.0
-  provisionprofile:
-  codesignidentity:
-  entitlements:
+  provisionprofile: 
+  codesignidentity: 
+  entitlements: 
   BundleIdentifier: com.rhomobile.rcmon
   BundleURLScheme: rcmon
 wp:
-  productid: 'dc05ec50-8ab0-012f-d4ca-70f1a1bddd12'
+  productid: dc05ec50-8ab0-012f-d4ca-70f1a1bddd12
 symbian:
-  uid: '0xe657854d'
+  uid: 3864495437
 android:
   version: 2.1
-
-extensions: ["json", "another-extension"]
+extensions:
+  - json

@@ -1,0 +1,18 @@
+<div data-role="page">
+	<div data-role="header" data-position="inline">
+    <h1>License Information</h1>
+	</div>
+
+  <div data-role="content">
+    <ul data-role="listview">
+      <li>
+        <h3><%=@license%></h3>
+        <p><strong>Licensed to <%=@license%> on <%=@issued%></strong></p>
+      </li>
+        <li>Available<span class="ui-li-count"><%=@available%></span></li>
+        <li>Total Seats <span class="ui-li-count"><%=@total%></span></li>
+        <li><%=@token%></li>
+    </ul>
+  </div>
+
+</div>
