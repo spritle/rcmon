@@ -45,8 +45,8 @@ module BrowserHelper
   def get_api(str)
     if str == 'license'
       request_url = Rho::RhoConfig.server + "/api/get_license_info"
-    elsif str == 'user'
-      request_url =''
+    elsif str == 'users'
+      request_url =  Rho::RhoConfig.server + "/api/list_users"
     end
     Rho::AsyncHttp.post( :url => request_url,
                          :body => {:api_token => Rho::RhoConfig.token}.to_json,
