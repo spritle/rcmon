@@ -13,22 +13,21 @@ class RhoMonitorController < Rho::RhoController
     server =@params['rho_monitor']['url']
     login = @params['rho_monitor']['login']
     password = @params['rho_monitor']['password']
-    
     response= Rho::AsyncHttp.post(:url => server + "/login",
     :body => {:login => login, :password => password}.to_json,
     :headers => {"Content-Type" => "application/json"})
     
-    rho_cookie = response['cookies']
-    
+    Rho::RhoConfig.cookie = response['cookies']
+
     response= Rho::AsyncHttp.post(:url => server + "/api/get_api_token",
-    :headers =>{"Cookie" => rho_cookie, "Content-Type" => "application/json"}
+    :headers =>{"Cookie" => Rho::RhoConfig.cookie, "Content-Type" => "application/json"}
     )
     
     Rho::RhoConfig.token = response["body"]
     
     response1= Rho::AsyncHttp.post(:url => server + "/api/get_license_info",
     :body => {:api_token => Rho::RhoConfig.token}.to_json,
-    :headers =>{"Cookie" => rho_cookie, "Content-Type" => "application/json"}
+    :headers =>{"Cookie" => Rho::RhoConfig.cookie, "Content-Type" => "application/json"}
     )
     
     if response['status']=="ok"
