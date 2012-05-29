@@ -19,4 +19,16 @@ module BrowserHelper
   def is_bb6
     platform == 'blackberry' && (System::get_property('os_version').split('.')[0].to_i >= 6)
   end
+  
+  def date_format(str)
+    require 'time'
+    mtime = Time.parse(str)
+    mtime.strftime("%d/%m/%Y")
+  end
+  
+  def time_format(str)
+    require 'time'
+    mtime = Time.parse(str)
+    mtime.strftime("%H:%M %p")
+  end
 end

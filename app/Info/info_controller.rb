@@ -1,6 +1,7 @@
 require 'rho/rhocontroller'
 require 'helpers/browser_helper'
 require 'json'
+
 class InfoController < Rho::RhoController
   include BrowserHelper
   @@server_url = "http://173.230.144.130:9292"
@@ -9,7 +10,7 @@ class InfoController < Rho::RhoController
   # GET /Info
   
   def index
-    
+    puts "******************INFO***********************"
     body = { :login => "#{@@login}", :password => "#{@@password}" }.to_json
     
     response =  Rho::AsyncHttp.post(:url => "#{@@server_url}/login",
@@ -36,6 +37,8 @@ class InfoController < Rho::RhoController
       @total = result["seats"]
       @issued = result["issued"]
       @license = result["licensee"]
+      @issued_date =date_format(@issued)
+      @issued_time =time_format(@issued)
     else 
        render  :controller=>"rho_monitor", :action => :login
     end

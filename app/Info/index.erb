@@ -7,10 +7,12 @@
     <ul data-role="listview">
       <li>
         <h3><%=@license%></h3>
-        <p><strong>Licensed to <%=@license%> on <%=@issued%></strong></p>
+        <p class="ui-li-aside"><strong><%=@issued_time%></strong></p>
+        <p><strong>Licensed to <%=@license%> issued on <%=@issued%> </strong></p>
       </li>
-        <li>Available<span class="ui-li-count"><%=@available%></span></li>
         <li>Total Devices <span class="ui-li-count"><%=@total%></span></li>
+        <li>Available<span class="ui-li-count"><%=@available%></span></li>
+        <li>Issued date<p class="ui-li-aside"><strong><%=@issued_date%></strong></p></li>
     </ul>
   </div>
 
