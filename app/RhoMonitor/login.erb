@@ -7,11 +7,11 @@
       <form method="POST" action="<%= url_for :action => :server_login %>">
          <div data-role="fieldcontain">
            <label for="rho_monitor[url]" class="fieldLabel">Url</label>
-           <input type="text" id="rho_monitor[url]" name="rho_monitor[url]" <%= placeholder("Url") %> />
+           <input type="text" id="rho_monitor[url]" name="rho_monitor[url]" value="http://" />
          </div>
          <div data-role="fieldcontain">
             <label for="rho_monitor[login]" class="fieldLabel">Login</label>
-            <input type="text" id="rho_monitor[login]" name="rho_monitor[login]" <%= placeholder("Login") %> />
+            <input type="text" id="rho_monitor[login]" name="rho_monitor[login]" value="rhoadmin" />
          </div>
          <div data-role="fieldcontain">
              <label for="rho_monitor[password]" class="fieldLabel">Password</label>
