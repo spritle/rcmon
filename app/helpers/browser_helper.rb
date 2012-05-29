@@ -41,7 +41,7 @@ module BrowserHelper
                         :headers =>{"Cookie" => cookie, "Content-Type" => "application/json"}
                       )
     
-    end
+  end
   def get_api(str)
     if str == 'license'
       request_url = Rho::RhoConfig.server + "/api/get_license_info"
@@ -52,5 +52,12 @@ module BrowserHelper
                          :body => {:api_token => Rho::RhoConfig.token}.to_json,
                          :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
                        )
+  end
+  def get_ping(message,sources,vibrate,sound,users)
+    Rho::AsyncHttp.post( :url => Rho::RhoConfig.server+"/api/ping",
+                         :body => {:api_token => Rho::RhoConfig.token, :user_id => users,:sources => sources ,:message => message,:vibrate => vibrate,:sound => sound}.to_json,
+                         :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                   )
+ 
   end
 end
