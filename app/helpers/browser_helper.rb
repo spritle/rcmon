@@ -31,4 +31,16 @@ module BrowserHelper
     mtime = Time.parse(str)
     mtime.strftime("%H:%M %p")
   end
+  
+  def get_api(str)
+    if str == 'license'
+      request_url = Rho::RhoConfig.server + "/api/get_license_info"
+    elsif str == 'user'
+      request_url =''
+    end
+    Rho::AsyncHttp.post( :url => request_url,
+                         :body => {:api_token => Rho::RhoConfig.token}.to_json,
+                         :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                       )
+  end
 end

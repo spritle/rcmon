@@ -7,15 +7,9 @@ class InfoController < Rho::RhoController
   # GET /Info
   
   def index
-    puts "******************INFO***********************"
-  
-    license_info =  Rho::AsyncHttp.post(:url => Rho::RhoConfig.server + "/api/get_license_info",
-                                        :body => {:api_token => Rho::RhoConfig.token}.to_json,
-                                        :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
-                                        )
+    license_info =  get_api('license')
     
     if license_info['status']=="ok"  
-      
       result = Rho::JSON.parse(license_info["body"])                          
       @available = result["available"]
       @total = result["seats"]
