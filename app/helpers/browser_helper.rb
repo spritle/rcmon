@@ -75,4 +75,10 @@ module BrowserHelper
                    )
  
   end
+  def get_source(partition)
+    Rho::AsyncHttp.post( :url => Rho::RhoConfig.server+"/api/list_sources",
+                         :body => {:api_token => Rho::RhoConfig.token, :partition_type =>partition}.to_json,
+                         :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                       )
+  end
 end
