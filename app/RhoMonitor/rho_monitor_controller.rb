@@ -24,7 +24,7 @@ class RhoMonitorController < Rho::RhoController
     :headers => {"Content-Type" => "application/json"})
     
     Rho::RhoConfig.cookie = response['cookies']
-
+    Rho::RhoConfig.server=server
     response= Rho::AsyncHttp.post(:url => server + "/api/get_api_token",
     :headers =>{"Cookie" => Rho::RhoConfig.cookie, "Content-Type" => "application/json"}
     )

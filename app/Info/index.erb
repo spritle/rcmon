@@ -1,10 +1,17 @@
 <div data-role="page" data-theme="b">
-	<div data-role="header" data-position="inline" data-theme="b">
+  
+	<div data-role="header" data-position="inline">
     <h1>License Information</h1>
+    <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" >
+     Back
+    </a>
+    <a href="<%= url_for :action => :logout %>" class="ui-btn-right" >
+     Logout
+    </a>
 	</div>
 
-  <div data-role="content" data-theme="a">
-    <ul data-role="listview">
+  <div data-role="content" >
+    <ul data-role="listview" data-theme="c">
       <li>
         <h3><%=@license%></h3>
         <p class="ui-li-aside"><strong><%=@issued_time%></strong></p>
