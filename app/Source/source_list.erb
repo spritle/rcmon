@@ -1,0 +1,27 @@
+<div data-role="page" data-theme="b">
+  
+  <div data-role="header" data-position="inline">
+    <h1>Source List</h1>
+    <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" >
+     Back
+    </a>
+    <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
+     Logout
+    </a>
+  </div>
+
+  <div data-role="content" >
+      <ul data-role="listview">
+            <% @sources.each do |source| %>
+            
+                <li>
+                  <a href="#">
+                    <%= source %>
+                  </a>
+                </li>
+            
+            <% end %>
+          </ul>
+  </div>
+
+</div>
