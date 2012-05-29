@@ -5,7 +5,7 @@ start_path = '/app/RhoMonitor/login'
 options_path = '/app/Settings'
 
 token=""
-
+cookie=""
 
 # location of bundle url (i.e. from rhohub.com); used by desktop win32 simulator
 rhobundle_zip_url = ''
