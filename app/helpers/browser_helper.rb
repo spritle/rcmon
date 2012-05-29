@@ -40,8 +40,23 @@ module BrowserHelper
     Rho::AsyncHttp.post(:url => server + "/api/get_api_token",
                         :headers =>{"Cookie" => cookie, "Content-Type" => "application/json"}
                       )
-    
   end
+    
+  def create_api_user(username,password)
+    Rho::AsyncHttp.post( :url => Rho::RhoConfig.server + "/api/create_user",
+                             :body => {:api_token => Rho::RhoConfig.token, :attributes =>{'login' => username, 'password' => password}}.to_json,
+                             :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                        )
+  end
+  
+  def delete_api_user(username)
+    Rho::AsyncHttp.post( :url => Rho::RhoConfig.server + "/api/delete_user",
+                                 :body => {:api_token => Rho::RhoConfig.token, 'user_id' => username}.to_json,
+                                 :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                            )
+  end
+  
+
   def get_api(str)
     if str == 'license'
       request_url = Rho::RhoConfig.server + "/api/get_license_info"
