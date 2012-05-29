@@ -13,34 +13,34 @@ class RhoMonitorController < Rho::RhoController
     server =@params['rho_monitor']['url']
     login = @params['rho_monitor']['login']
     password = @params['rho_monitor']['password']
-    body = { :login => login, :password => password }
+    
     response= Rho::AsyncHttp.post(:url => server + "/login",
-    :body => body.to_json,
+    :body => {:login => login, :password => password}.to_json,
     :headers => {"Content-Type" => "application/json"})
-    rhoconnect_session_cookie = response['cookies'].gsub("rhoconnect_session=","")
-    p "Got cookie:", response['cookies']
-    p "rhoconnect_session_cookie:" , rhoconnect_session_cookie
+    
+    rho_cookie = response['cookies']
+    
     response= Rho::AsyncHttp.post(:url => server + "/api/get_api_token",
-    :headers =>{"Cookie" =>"rhoconnect_session=" + rhoconnect_session_cookie, "Content-Type" => "application/json"}
+    :headers =>{"Cookie" => rho_cookie, "Content-Type" => "application/json"}
     )
     
-    puts response["body"],"---------token---------------"
     Rho::RhoConfig.token = response["body"]
     
     response1= Rho::AsyncHttp.post(:url => server + "/api/get_license_info",
-    :body => { :api_token => Rho::RhoConfig.token }.to_json,
-    :headers =>{"Cookie" =>"rhoconnect_session=" + rhoconnect_session_cookie, "Content-Type" => "application/json"}
+    :body => {:api_token => Rho::RhoConfig.token}.to_json,
+    :headers =>{"Cookie" => rho_cookie, "Content-Type" => "application/json"}
     )
     
     if response['status']=="ok"
-      @token_received = Rho::RhoConfig.token
       @raw_body = response1["body"]
       result = Rho::JSON.parse(response1["body"])
       @licensee = result["licensee"]
       @seats = result["seats"]
       @available = result["available"]
       @issue_on = result["issued"]
+      
       render  :action => :dashboard 
+      
     else 
       render  :action => :login
     end

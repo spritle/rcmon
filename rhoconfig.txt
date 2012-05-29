@@ -6,6 +6,7 @@ options_path = '/app/Settings'
 
 token=""
 
+
 # location of bundle url (i.e. from rhohub.com); used by desktop win32 simulator
 rhobundle_zip_url = ''
 
