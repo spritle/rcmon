@@ -1,7 +1,7 @@
 <div data-role="page" data-theme="b">
   
   <div data-role="header" data-position="inline">
-    <h1>List of Users</h1>
+    <h1>Registered users </h1>
     <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" >
      Back
     </a>
@@ -11,13 +11,20 @@
   </div>
 
   <div data-role="content" >
-      <ul data-role="listview" data-theme="c">
+    <div class="content-primary"> 
+      <ul data-role="listview" data-split-icon="gear" data-split-theme="d">
       <% @users.each do |user| %>
-          <li>
-              <%= user %>
+          <li><a href="#">
+            <img src="/public/images/live-user.png" />
+            <h3></h3>
+            <p><%= user %></p>
+            </a>
+            <a href="<%=url_for(:action => :delete ,:query => {:name=>user} )%>">
+            Delete</a>
           </li>
       <% end %>
-    </ul>
+      </ul>
+      </div>
   </div>
 
 </div>
