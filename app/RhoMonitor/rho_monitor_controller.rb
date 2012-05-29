@@ -34,14 +34,12 @@ class RhoMonitorController < Rho::RhoController
     
     if response['status']=="ok"
       @token_received = Rho::RhoConfig.token
-      
-      @res = response1["body"]
-      p @res
-      p @res.class
-      p Rho::JSON.parse(@res)
-      @licensee = @res
-      @seats = response1["body"]["seats"]
-      @available = response1["body"]["available"]
+      @raw_body = response1["body"]
+      result = Rho::JSON.parse(response1["body"])
+      @licensee = result["licensee"]
+      @seats = result["seats"]
+      @available = result["available"]
+      @issue_on = result["issued"]
       render  :action => :dashboard 
     else 
       render  :action => :login
