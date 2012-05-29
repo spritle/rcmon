@@ -7,6 +7,12 @@ class RhoMonitorController < Rho::RhoController
 
   # GET /RhoMonitor
   def login
+    if Rho::RhoConfig.token==""
+      puts "Please Login..............."
+    else
+      puts "Please logout..............."
+      render :action => :dashboard
+    end
   end
   def server_login
     puts "started...................."
@@ -31,15 +37,7 @@ class RhoMonitorController < Rho::RhoController
     )
     
     if response['status']=="ok"
-      @raw_body = response1["body"]
-      result = Rho::JSON.parse(response1["body"])
-      @licensee = result["licensee"]
-      @seats = result["seats"]
-      @available = result["available"]
-      @issue_on = result["issued"]
-      
       render  :action => :dashboard 
-      
     else 
       render  :action => :login
     end
@@ -51,55 +49,10 @@ class RhoMonitorController < Rho::RhoController
     
   end
   
-  
-  def index
-    @rho_monitors = RhoMonitor.find(:all)
-    render :back => '/app'
+  def logout
+    puts "---------------logout-----------"
+    Rho::RhoConfig.token=""
+    render :action =>:login
   end
-
-  # GET /RhoMonitor/{1}
-  def show
-    @rho_monitor = RhoMonitor.find(@params['id'])
-    if @rho_monitor
-      render :action => :show, :back => url_for(:action => :index)
-    else
-      redirect :action => :index
-    end
-  end
-
-  # GET /RhoMonitor/new
-  def new
-    @rho_monitor = RhoMonitor.new
-    render :action => :new, :back => url_for(:action => :index)
-  end
-
-  # GET /RhoMonitor/{1}/edit
-  def edit
-    @rho_monitor = RhoMonitor.find(@params['id'])
-    if @rho_monitor
-      render :action => :edit, :back => url_for(:action => :index)
-    else
-      redirect :action => :index
-    end
-  end
-
-  # POST /RhoMonitor/create
-  def create
-    @rho_monitor = RhoMonitor.create(@params['rho_monitor'])
-    redirect :action => :index
-  end
-
-  # POST /RhoMonitor/{1}/update
-  def update
-    @rho_monitor = RhoMonitor.find(@params['id'])
-    @rho_monitor.update_attributes(@params['rho_monitor']) if @rho_monitor
-    redirect :action => :index
-  end
-
-  # POST /RhoMonitor/{1}/delete
-  def delete
-    @rho_monitor = RhoMonitor.find(@params['id'])
-    @rho_monitor.destroy if @rho_monitor
-    redirect :action => :index  
-  end
+ 
 end
