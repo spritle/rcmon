@@ -32,7 +32,7 @@ class InfoController < Rho::RhoController
                                         :body => body,
                                         :headers => {"Content-Type" => "application/json",:api_token => @token}
                                         )
-                                        
+                                
     @available = license_info["body"]["available"]
     @total = license_info["body"]["seats"]
     @issued = license_info["body"]["issued"]
