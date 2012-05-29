@@ -14,26 +14,47 @@ class RhoMonitorController < Rho::RhoController
     login = @params['rho_monitor']['login']
     password = @params['rho_monitor']['password']
     body = { :login => login, :password => password }
-    p body,"------------body------------------"
-    response= Rho::AsyncHttp.post(:url => "http://173.230.144.130:9292/login",
-                             :body => body,
-                             :headers => {"Content-Type" => "application/json"})
-    p response['body'],response['cookies'],response['status'],"----------res"
-    rhoconnect_session_cookie =response['cookies']
-    token= Rho::AsyncHttp.post(:url => "http://173.230.144.130:9292/api/get_api_token",
-                                  :headers =>{"Cookie" =>rhoconnect_session_cookie,"Content-Type" => "application/json"}
-                                  )
-    puts token,"---------token---------------"
+    response= Rho::AsyncHttp.post(:url => server + "/login",
+    :body => body.to_json,
+    :headers => {"Content-Type" => "application/json"})
+    rhoconnect_session_cookie = response['cookies'].gsub("rhoconnect_session=","")
+    p "Got cookie:", response['cookies']
+    p "rhoconnect_session_cookie:" , rhoconnect_session_cookie
+    response= Rho::AsyncHttp.post(:url => server + "/api/get_api_token",
+    :headers =>{"Cookie" =>"rhoconnect_session=" + rhoconnect_session_cookie, "Content-Type" => "application/json"}
+    )
+    
+    puts response["body"],"---------token---------------"
+    Rho::RhoConfig.token = response["body"]
+    
+    response1= Rho::AsyncHttp.post(:url => server + "/api/get_license_info",
+    :body => { :api_token => Rho::RhoConfig.token }.to_json,
+    :headers =>{"Cookie" =>"rhoconnect_session=" + rhoconnect_session_cookie, "Content-Type" => "application/json"}
+    )
+    
     if response['status']=="ok"
-      puts "true----------------"
-    render  :action => :dashboard 
+      @token_received = Rho::RhoConfig.token
+      
+      @res = response1["body"]
+      p @res
+      p @res.class
+      p Rho::JSON.parse(@res)
+      @licensee = @res
+      @seats = response1["body"]["seats"]
+      @available = response1["body"]["available"]
+      render  :action => :dashboard 
     else 
-      puts "else-----"
       render  :action => :login
     end
   end
+  
   def dashboard
+    
+    puts ".............dashboard........."
+    
   end
+  
+  
   def index
     @rho_monitors = RhoMonitor.find(:all)
     render :back => '/app'
