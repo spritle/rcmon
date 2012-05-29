@@ -41,7 +41,27 @@ module BrowserHelper
                         :headers =>{"Cookie" => cookie, "Content-Type" => "application/json"}
                       )
   end
+  def get_device(username)
+    Rho::AsyncHttp.post( :url => Rho::RhoConfig.server + "/api/list_clients",
+                                 :body => {:api_token => Rho::RhoConfig.token, 'user_id' => username}.to_json,
+                                 :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                            )
+  end  
     
+  def create_api_device(username)
+      Rho::AsyncHttp.post( :url => Rho::RhoConfig.server + "/api/create_client",
+                               :body => {:api_token => Rho::RhoConfig.token, 'user_id' => username}.to_json,
+                               :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                          )
+  end
+  
+  def delete_api_device(username,device)
+    Rho::AsyncHttp.post( :url => Rho::RhoConfig.server + "/api/delete_client",
+                                   :body => {:api_token => Rho::RhoConfig.token, 'user_id' => username,'client_id' =>device}.to_json,
+                                   :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                       )
+  end
+  
   def create_api_user(username,password)
     Rho::AsyncHttp.post( :url => Rho::RhoConfig.server + "/api/create_user",
                              :body => {:api_token => Rho::RhoConfig.token, :attributes =>{'login' => username, 'password' => password}}.to_json,

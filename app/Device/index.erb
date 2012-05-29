@@ -1,27 +1,31 @@
-<div data-role="page">
+<div data-role="page"  class="type-interior">
 
-	<div data-role="header" data-position="inline">
+	<div data-role="header"  data-position="inline">
     <h1>Devices</h1>
     <a href="<%= Rho::RhoConfig.start_path %>" class="ui-btn-left" data-icon="home" data-direction="reverse" <%= "data-ajax='false'" if is_bb6 %>>
       Home
     </a>
-    <a href="<%= url_for :action => :new %>" class="ui-btn-right" data-icon="plus">
-      New
+    <a href="<%= url_for( :action => :new ,:query => {:name=> @params['name']} )%>" class="ui-btn-right" data-icon="plus">
+      Create
     </a>
 	</div>
 
   <div data-role="content">
-    <ul data-role="listview">
-      <% @devices.each do |device| %>
-      
-          <li>
-            <a href="<%= url_for :action => :show, :id => device.object %>">
-              <%= device.name %>
-            </a>
-          </li>
-      
-      <% end %>
-    </ul>
+      <div class="content-primary">
+        <ul data-role="listview" data-inset="true">
+        <% @devices.each do |device| %>
+            <li>
+                <a href="#">
+                <img src="/public/images/mobile_device.png" />
+                <h3><%= device %></h3>
+                <p></p>
+                </a>
+                <a href="<%=url_for(:action => :delete ,:query => {:name=>device} )%>">
+                      Delete</a>
+            </li>
+        <% end %>
+        </ul>
+      </div>
   </div>
 
 </div>

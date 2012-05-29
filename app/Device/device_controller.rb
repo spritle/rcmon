@@ -3,57 +3,36 @@ require 'helpers/browser_helper'
 
 class DeviceController < Rho::RhoController
   include BrowserHelper
-
   # GET /Device
   def index
-   puts "*****************Device*88888888888"
-   puts @params.inspect
-    @devices=[]
+   @@user_name = @params['name']
+   list_devices =  get_device(@params['name'])
+   if list_devices['status']=="ok"  
+     @devices = Rho::JSON.parse(list_devices["body"])
+   else 
+      redirect  :controller=>:RhoMonitor, :action => :dashboard
+   end
   end
 
-  # GET /Device/{1}
-  def show
-    @device = Device.find(@params['id'])
-    if @device
-      render :action => :show, :back => url_for(:action => :index)
-    else
-      redirect :action => :index
-    end
-  end
-
-  # GET /Device/new
   def new
-    @device = Device.new
-    render :action => :new, :back => url_for(:action => :index)
   end
-
-  # GET /Device/{1}/edit
-  def edit
-    @device = Device.find(@params['id'])
-    if @device
-      render :action => :edit, :back => url_for(:action => :index)
-    else
-      redirect :action => :index
+  
+  def create
+    response = create_api_device(@params['device']['name'])
+    if response['status']=="ok" 
+      redirect :action => :index, :name=>@@user_name
+      Alert.show_status("Notification", response['body'], 'OK')
+    elsif response['status']=="error"
+      Alert.show_status("Error", response['body'], 'OK')
+      render  :action => :new
     end
   end
-
-  # POST /Device/create
-  def create
-    @device = Device.create(@params['device'])
-    redirect :action => :index
-  end
-
-  # POST /Device/{1}/update
-  def update
-    @device = Device.find(@params['id'])
-    @device.update_attributes(@params['device']) if @device
-    redirect :action => :index
-  end
-
-  # POST /Device/{1}/delete
+  
   def delete
-    @device = Device.find(@params['id'])
-    @device.destroy if @device
-    redirect :action => :index  
+    response = delete_api_device(@@user_name,@params['name'])
+    if response['status']=="ok" 
+      redirect  :action => :index, :name=>@@user_name
+      Alert.show_status("Notification", response['body'], 'OK')
+    end
   end
 end
