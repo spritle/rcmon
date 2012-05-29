@@ -1,20 +1,24 @@
 <div data-role="page" data-theme="b">
 	<div data-role="header" data-position="inline">
 		<h1>Dashboard</h1>
-		<a href="<%= Rho::RhoConfig.start_path %>" class="ui-btn-left" data-icon="home" data-direction="reverse" <%= "data-ajax='false'" if is_bb6 %>>
-			Home
-		</a>
-		<a href="<%= url_for :action => :new %>" class="ui-btn-right" data-icon="plus">
-			New
+		<a href="<%= url_for :action => :logout %>" class="ui-btn-right" >
+		 Logout
 		</a>
 	</div>
 
 	<div data-role="content">
-		<ul data-role="listview">
-			<li>Total: <%= @seats %></li>
-			<li>Available: <%= @available %></li>
-			<li>Licensed to: <%= @licensee %></li>
-			<li>Issued on: <%= @issue_on %></li>
-		</ul>
-	</div>
+      <div data-role="fieldcontain">
+        <a href="#" ><label  class="fieldLabel">License</label></a>
+      </div>
+      <div data-role="fieldcontain">
+        <a href="#" ><label  class="fieldLabel">User</label></a>
+      </div>
+      <div data-role="fieldcontain">
+        <a href="#" ><label  class="fieldLabel">Ping</label></a>
+      </div>
+      <div data-role="fieldcontain">
+        <a href="#" ><label  class="fieldLabel">Devices</label></a>
+      </div>
+    
+</div>
 </div>
