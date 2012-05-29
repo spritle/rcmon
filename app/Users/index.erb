@@ -1,0 +1,23 @@
+<div data-role="page" data-theme="b">
+  
+  <div data-role="header" data-position="inline">
+    <h1>List of Users</h1>
+    <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" >
+     Back
+    </a>
+    <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
+     Logout
+    </a>
+  </div>
+
+  <div data-role="content" >
+      <ul data-role="listview" data-theme="c">
+      <% @users.each do |user| %>
+          <li>
+              <%= user %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
