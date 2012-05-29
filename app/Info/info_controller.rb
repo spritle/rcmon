@@ -9,37 +9,36 @@ class InfoController < Rho::RhoController
   # GET /Info
   
   def index
+    
     body = { :login => "#{@@login}", :password => "#{@@password}" }.to_json
     
     response =  Rho::AsyncHttp.post(:url => "#{@@server_url}/login",
                                     :body => body,
                                     :headers => {"Content-Type" => "application/json"}
                                     )
-    rhoconnect_session_cookie = response["cookies"]
-      
+    rho_cookie = response['cookies']
     
-    
-    token = Rho::AsyncHttp.post(:url => "#{@@server_url}/api/admin/get_api_token",
-                         :body => body,
-                         :headers => {"Content-Type" => "application/json","Cookie" => rhoconnect_session_cookie}
+    token = Rho::AsyncHttp.post(:url => "#{@@server_url}/api/get_api_token",
+                         :headers => {"Content-Type" => "application/json", "Cookie" => rho_cookie}
                        )
-                       
-    
-    
+    Rho::RhoConfig.token = response["body"]                   
     @token = token["body"]   
    
-    license_info =  Rho::AsyncHttp.post(:url => "#{@@server_url}/api/admin/get_license_info",
-                                        :body => body,
-                                        :headers => {"Content-Type" => "application/json",:api_token => @token}
+    license_info =  Rho::AsyncHttp.post(:url => "#{@@server_url}/api/get_license_info",
+                                        :body => {:api_token => Rho::RhoConfig.token}.to_json,
+                                        :headers => {"Content-Type" => "application/json","Cookie" => rho_cookie}
                                         )
-                                        
-    @available = license_info["body"]["available"]
-    @total = license_info["body"]["seats"]
-    @issued = license_info["body"]["issued"]
-    @licensee = license_info["body"]["license"]
-
-
-    #render :back => '/app'
+    
+    if response['status']=="ok"  
+      
+      result = Rho::JSON.parse(license_info["body"])                          
+      @available = result["available"]
+      @total = result["seats"]
+      @issued = result["issued"]
+      @license = result["licensee"]
+    else 
+       render  :controller=>"rho_monitor", :action => :login
+    end
   end
   
 end

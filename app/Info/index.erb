@@ -1,17 +1,16 @@
-<div data-role="page">
-	<div data-role="header" data-position="inline">
+<div data-role="page" data-theme="b">
+	<div data-role="header" data-position="inline" data-theme="b">
     <h1>License Information</h1>
 	</div>
 
-  <div data-role="content">
+  <div data-role="content" data-theme="a">
     <ul data-role="listview">
       <li>
         <h3><%=@license%></h3>
         <p><strong>Licensed to <%=@license%> on <%=@issued%></strong></p>
       </li>
         <li>Available<span class="ui-li-count"><%=@available%></span></li>
-        <li>Total Seats <span class="ui-li-count"><%=@total%></span></li>
-        <li><%=@token%></li>
+        <li>Total Devices <span class="ui-li-count"><%=@total%></span></li>
     </ul>
   </div>
 
