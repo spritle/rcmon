@@ -106,5 +106,11 @@ module BrowserHelper
                          :body => {:api_token => Rho::RhoConfig.token,:source_id => source}.to_json,
                          :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
                        )
-   end
+  end
+  def get_list_source_docs(source,user)
+    Rho::AsyncHttp.post( :url => Rho::RhoConfig.server+"/api/list_source_docs",
+                         :body => {:api_token => Rho::RhoConfig.token,:source_id => source,:user_id => user}.to_json,
+                         :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                       )
+ end
 end

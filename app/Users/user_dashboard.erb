@@ -1,0 +1,21 @@
+<div data-role="page" data-theme="b">
+  <div data-role="header" data-position="inline">
+   <h1>User Dashboard </h1>
+   <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" >
+    Back
+   </a>
+   <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
+    Logout
+   </a>
+ </div>
+
+  <div data-role="content">
+     <div data-role="fieldcontain">
+         <a href="<%=url_for(:controller=>:Device,:action => :index ,:query => {:user_name=>@user} )%>"><label  class="fieldLabel">Devices</label></a>
+     </div>
+     <div data-role="fieldcontain">
+         <a href="<%= url_for :controller=>:Source ,:action => :source_list,:query => {:user_name=>@user} %>"><label  class="fieldLabel">Sources</label></a>
+      </div>
+           
+</div>
+</div>

@@ -5,8 +5,8 @@ class DeviceController < Rho::RhoController
   include BrowserHelper
   # GET /Device
   def index
-   @@user_name = @params['name']
-   list_devices =  get_device(@params['name'])
+   @@user_name = @params['user_name']
+   list_devices =  get_device(@params['user_name'])
    if list_devices['status']=="ok"  
      @devices = Rho::JSON.parse(list_devices["body"])
    else 
@@ -29,7 +29,7 @@ class DeviceController < Rho::RhoController
   end
   
   def delete
-    response = delete_api_device(@@user_name,@params['name'])
+    response = delete_api_device(@@user_name,@params['user_name'])
     if response['status']=="ok" 
       redirect  :action => :index, :name=>@@user_name
       Alert.show_status("Notification", response['body'], 'OK')
