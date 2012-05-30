@@ -1,0 +1,43 @@
+<div data-role="page" data-theme="b">
+  
+  <div data-role="header" data-position="inline">
+    <h1>Source Attributes</h1>
+    <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" >
+     Back
+    </a>
+    <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
+     Logout
+    </a>
+  </div>
+
+  <div data-role="content" >
+    <table>
+      <% @source_params.each do |params| %>
+           <tr>
+              <% if params['value'] && params['value']!=""%>
+              <td><label class="fieldLabel"><%= params['name'] %></label></td>
+              <td><label class="fieldLabel">:<%= params['value'] %></label></td>
+              <% end %>
+           </tr>
+      <% end %>
+       <% if @params['user_name']!="" %>
+            <tr>
+               <td>md</td>
+               <td>:<%= @list_source_docs['md'] %></td>
+            </tr>
+            <tr> 
+               <td>errors</td>
+               <td>:<%= @list_source_docs['errors'] %></td>
+            </tr>
+            <tr> 
+                <td>md_copy</td>
+                <td>:<%= @list_source_docs['md_copy'] %></td>
+            </tr>
+            <tr> 
+                <td>md_size</td>
+                <td><%= @list_source_docs['md_size'] %></td>
+            </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

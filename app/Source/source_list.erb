@@ -15,7 +15,7 @@
             <% @sources.each do |source| %>
             
                 <li>
-                  <a href="#">
+                  <a href="<%= url_for :action => :source_param , :query => {:source_name => source,:user_name =>@params['user_name'] } %>">
                     <%= source %>
                   </a>
                 </li>

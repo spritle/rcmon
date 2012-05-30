@@ -35,4 +35,7 @@ class UsersController < Rho::RhoController
     end
     redirect :action => :index
   end
+  def user_dashboard
+    @user=@params['name']
+  end
 end
