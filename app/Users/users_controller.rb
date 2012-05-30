@@ -20,7 +20,6 @@ class UsersController < Rho::RhoController
   def create
     response = create_api_user(@params['users']['name'],@params['users']['password'])
     if response['status']=="ok" 
-      render  :controller=>:RhoMonitor, :action => :dashboard
       Alert.show_status("Notification", response['body'], 'OK')
     elsif response['status']=="error"
       Alert.show_status("Error", response['body'], 'OK')
@@ -32,7 +31,6 @@ class UsersController < Rho::RhoController
   def delete
     response = delete_api_user(@params['name'])
     if response['status']=="ok" 
-      render  :controller=>:RhoMonitor, :action => :dashboard
       Alert.show_status("Notification", response['body'], 'OK')
     end
     redirect :action => :index
