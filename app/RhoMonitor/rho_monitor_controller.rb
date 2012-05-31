@@ -42,5 +42,12 @@ class RhoMonitorController < Rho::RhoController
     Rho::RhoConfig.token=""
     render :action =>:login
   end
- 
+  
+  def reset
+    response = get_api('rest')
+    if response['status']=="ok" 
+      Alert.show_status("Notification", response['body'], 'OK')
+    end
+    redirect :action => :dashboard
+  end
 end
