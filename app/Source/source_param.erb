@@ -23,19 +23,19 @@
        <% if @params['user_name']!="" %>
             <tr>
                <td>md</td>
-               <td>:<%= @list_source_docs['md'] %></td>
+               <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md']} %>"><%= @list_source_docs['md'] %></a></td>
             </tr>
             <tr> 
                <td>errors</td>
-               <td>:<%= @list_source_docs['errors'] %></td>
+               <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['errors']} %>"><%= @list_source_docs['errors'] %></a></td>
             </tr>
             <tr> 
                 <td>md_copy</td>
-                <td>:<%= @list_source_docs['md_copy'] %></td>
+                <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_copy']} %>"><%= @list_source_docs['md_copy'] %></a></td>
             </tr>
             <tr> 
                 <td>md_size</td>
-                <td><%= @list_source_docs['md_size'] %></td>
+                <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_size']} %>"><%= @list_source_docs['md_size'] %></a></td>
             </tr>
       <% end %>
     </table>

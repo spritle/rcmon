@@ -1,0 +1,35 @@
+<div data-role="page" data-theme="b">
+  
+  <div data-role="header" data-position="inline">
+    <h1>Data</h1>
+    <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" >
+     Back
+    </a>
+    <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
+     Logout
+    </a>
+  </div>
+
+  <div data-role="content" >
+      <label class="fieldLabel" style="font-size:18px;">Document  [<%= @params['doc'] %>]</label><br/><br/>
+      <table>
+      <% if @source_db_doc == {} %>
+          Document is empty
+        <% end %>
+          <% @source_db_doc.each do |data| %>
+               <tr>
+                <td><label class="fieldLabel"><a><%= data[0] %></a></label></td>
+               </tr>
+              
+                <% data[1].each do |params| %>
+                <tr>
+                  <td><label class="fieldLabel"><%= params[0]  %></label></td>
+                  <td><label class="fieldLabel"><%= params[1]  %></label></td>
+               </tr>
+                <% end %>
+               
+          <% end %>
+       
+        </table>
+  </div>
+</div>
