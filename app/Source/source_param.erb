@@ -2,7 +2,7 @@
   
   <div data-role="header" data-position="inline">
     <h1>Source Attributes</h1>
-    <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" >
+    <a href="<%= url_for :action => :source_list ,:query => {:user_name =>@params['user_name']} %>" class="ui-btn-left" data-icon="back" >
      Back
     </a>
     <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
@@ -23,19 +23,19 @@
        <% if @params['user_name']!="" %>
             <tr>
                <td>md</td>
-               <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md']} %>"><%= @list_source_docs['md'] %></a></td>
+               <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['md'] %></a></td>
             </tr>
             <tr> 
                <td>errors</td>
-               <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['errors']} %>"><%= @list_source_docs['errors'] %></a></td>
+               <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['errors'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['errors'] %></a></td>
             </tr>
             <tr> 
                 <td>md_copy</td>
-                <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_copy']} %>"><%= @list_source_docs['md_copy'] %></a></td>
+                <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_copy'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['md_copy'] %></a></td>
             </tr>
             <tr> 
                 <td>md_size</td>
-                <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_size']} %>"><%= @list_source_docs['md_size'] %></a></td>
+                <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_size'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['md_size'] %></a></td>
             </tr>
       <% end %>
     </table>
