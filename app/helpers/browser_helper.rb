@@ -117,4 +117,10 @@ module BrowserHelper
                          :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
                        )
  end
+ def get_db_doc(doc,data_type)
+   Rho::AsyncHttp.post( :url => Rho::RhoConfig.server+"/api/get_db_doc",
+                        :body => {:api_token => Rho::RhoConfig.token, :doc => doc,:data_type => data_type }.to_json,
+                        :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                      )
+ end
 end

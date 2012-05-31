@@ -17,4 +17,8 @@ class SourceController < Rho::RhoController
       @list_source_docs=Rho::JSON.parse(list_source_docs["body"])
     end
   end
+  def source_doc
+   source_db_doc=get_db_doc(@params['doc'],"hash")
+   @source_db_doc=Rho::JSON.parse(source_db_doc["body"]) 
+  end
 end
