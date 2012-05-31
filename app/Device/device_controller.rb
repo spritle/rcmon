@@ -35,4 +35,13 @@ class DeviceController < Rho::RhoController
       Alert.show_status("Notification", response['body'], 'OK')
     end
   end
+  
+  def device_param
+    response = get_device_param(@params['device_name'])
+    if response['status']=="ok" 
+      @device_params=Rho::JSON.parse(response["body"])
+    else
+      @device_params=[]
+    end
+  end
 end

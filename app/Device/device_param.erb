@@ -1,0 +1,25 @@
+<div data-role="page" data-theme="b">
+  
+  <div data-role="header" data-position="inline">
+    <h1>Device Attributes</h1>
+    <a href="<%= url_for( :action => :index ,:query => {:user_name=> @params['user_name']} )%>" class="ui-btn-left" data-icon="back" >
+     Back
+    </a>
+    <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
+     Logout
+    </a>
+  </div>
+
+  <div data-role="content" >
+    <table>
+      <% @device_params.each do |params| %>
+           <tr>
+              <% if params['value'] && params['value']!=""%>
+              <td><label class="fieldLabel"><%= params['name'] %></label></td>
+              <td><label class="fieldLabel">:<%= params['value'] %></label></td>
+              <% end %>
+           </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

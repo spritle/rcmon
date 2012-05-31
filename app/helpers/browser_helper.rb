@@ -92,6 +92,14 @@ module BrowserHelper
                          :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
                        )
   end
+  
+  def get_device_param(client)
+    Rho::AsyncHttp.post( :url => Rho::RhoConfig.server+"/api/get_client_params",
+                             :body => {:api_token => Rho::RhoConfig.token, :client_id => client}.to_json,
+                             :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
+                       )
+  end
+  
   def get_ping(message,sources,vibrate,sound,users)
     Rho::AsyncHttp.post( :url => Rho::RhoConfig.server+"/api/ping",
                          :body => {:api_token => Rho::RhoConfig.token, :user_id => users,:sources => sources ,:message => message,:vibrate => vibrate,:sound => sound}.to_json,
