@@ -50,4 +50,12 @@ class RhoMonitorController < Rho::RhoController
     end
     redirect :action => :dashboard
   end
+  
+  def get_adapter
+    response = get_api('adapter')
+    if response['status']=="ok" 
+      Alert.show_status("Notification", response['body'], 'OK')
+    end
+    redirect :action => :dashboard
+  end
 end

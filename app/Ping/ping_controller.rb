@@ -15,8 +15,6 @@ class PingController < Rho::RhoController
   end
   
   def ping_form
-    puts "SSSSSSSSSSSSSSSSSSSS"
-    puts @params.inspect
     list_users =  get_api('users')
     @users = Rho::JSON.parse(list_users["body"])
     @@users=[]

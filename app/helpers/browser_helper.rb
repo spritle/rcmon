@@ -84,6 +84,8 @@ module BrowserHelper
       request_url =  Rho::RhoConfig.server + "/api/list_users"
     elsif str == 'rest'
       request_url =  Rho::RhoConfig.server + "/api/reset"
+    elsif str == 'adapter'
+      request_url =  Rho::RhoConfig.server + "/api/get_adapter"
     end
     Rho::AsyncHttp.post( :url => request_url,
                          :body => {:api_token => Rho::RhoConfig.token}.to_json,
