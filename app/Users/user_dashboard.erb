@@ -1,7 +1,7 @@
 <div data-role="page" data-theme="b">
   <div data-role="header" data-position="inline">
    <h1>User Dashboard </h1>
-   <a href="<%=url_for(:action=>:index)%>" class="ui-btn-left" data-icon="back" >
+   <a href="<%= url_for :action => :index %>" class="ui-btn-left" data-icon="back" >
     Back
    </a>
    <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
