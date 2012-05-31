@@ -20,7 +20,7 @@ class DeviceController < Rho::RhoController
   def create
     response = create_api_device(@params['device']['name'])
     if response['status']=="ok" 
-      redirect :action => :index, :name=>@@user_name
+      redirect :action => :index, :user_name=>@@user_name
       Alert.show_status("Notification", response['body'], 'OK')
     elsif response['status']=="error"
       Alert.show_status("Error", response['body'], 'OK')
@@ -31,7 +31,7 @@ class DeviceController < Rho::RhoController
   def delete
     response = delete_api_device(@@user_name,@params['user_name'])
     if response['status']=="ok" 
-      redirect  :action => :index, :name=>@@user_name
+      redirect  :action => :index, :user_name=>@@user_name
       Alert.show_status("Notification", response['body'], 'OK')
     end
   end

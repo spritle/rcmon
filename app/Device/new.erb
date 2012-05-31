@@ -2,7 +2,7 @@
 
   <div data-role="header" data-position="inline">
     <h1>New</h1>
-    <a href="<%= url_for :action => :index %>" class="ui-btn-left" data-icon="back" data-direction="reverse">
+    <a href="<%=  url_for( :action => :index ,:query => {:user_name=> @params['name']} ) %>" class="ui-btn-left" data-icon="back" data-direction="reverse">
       Cancel
     </a>
   </div>
