@@ -1,32 +1,39 @@
 <div data-role="page" data-theme="a">
 	<div data-role="header" data-position="inline" >
 		<h1>Dashboard</h1>
-		<a href="<%= url_for :action => :logout %>" class="ui-btn-right" >
-		 Logout
-		</a>
 	</div>
 
 	<div data-role="content" >
-      <div data-role="fieldcontain" >
-        <a href="<%= url_for :controller=>:Info ,:action => :index %>" ><label  class="fieldLabel">License</label></a>
-      </div>
-      <div data-role="fieldcontain" data-theme="a">
-        <a href="<%= url_for :controller=>:Users ,:action => :index %>"  ><label  class="fieldLabel">Users</label></a>
-      </div>
-      <div data-role="fieldcontain">
-      <a href="<%= url_for :controller=>:Users ,:action => :new %>"  ><label  class="fieldLabel">Create User</label></a>
-      </div>
-      <div data-role="fieldcontain">
-      <a href="<%= url_for :controller=>:Ping ,:action => :index %>" ><label  class="fieldLabel">Ping</label></a>
-      </div>
-      <div data-role="fieldcontain">
-        <a href="<%= url_for :controller=>:Source ,:action => :source_list %>" ><label  class="fieldLabel">Source</label></a>
-      </div>
-      <div data-role="fieldcontain">
-          <a href="<%= url_for :controller=>:RhoMonitor ,:action => :get_adapter %>" ><label  class="fieldLabel">Adapter</label></a>
-     </div>
-      <div data-role="fieldcontain">
-         <a href="<%= url_for :controller=>:RhoMonitor ,:action => :reset %>" ><label  class="fieldLabel">Reset</label></a>
+	<br/>
+      <div class="ui-grid-b">
+      
+        <div class="ui-block-a"><div class="ui-bar " style="height:90px">
+        <a href="<%= url_for :controller=>:Info ,:action => :index %>" ><img src="\public\images\rcm\license-icon.png" width="72px" height="72px"/></a>
+        </div></div>
+        <div class="ui-block-b"><div class="ui-bar " style="height:90px">
+        <a href="<%= url_for :controller=>:Users ,:action => :index %>"  ><img src="\public\images\rcm\Users-icon.png" width="72px" height="72px"/></a>
+        </div></div>
+        <div class="ui-block-c"><div class="ui-bar " style="height:90px">
+        <a href="<%= url_for :controller=>:Users ,:action => :new %>"  ><img src="\public\images\rcm\add-user-icon.png" width="72px" height="72px"/></a>
+        </div></div>
+        
+        <div class="ui-block-a"><div class="ui-bar " style="height:90px">
+        <a href="<%= url_for :controller=>:Ping ,:action => :index %>" ><img src="\public\images\rcm\ping-icon.png" width="72px" height="72px"/></a>
+        </div></div>
+        <div class="ui-block-b"><div class="ui-bar " style="height:90px">
+        <a href="<%= url_for :controller=>:Source ,:action => :source_list %>" ><img src="\public\images\rcm\db-source-icon.png" width="72px" height="72px"/></a>
+        </div></div>
+        <div class="ui-block-c"><div class="ui-bar " style="height:90px">
+        <a href="<%= url_for :controller=>:RhoMonitor ,:action => :get_adapter %>" ><img src="\public\images\rcm\adaptor-icon.png" width="72px" height="72px"/></a>
+        </div></div>
+        
+        <div class="ui-block-a"><div class="ui-bar " style="height:90px"></div></div>
+        <div class="ui-block-b"><div class="ui-bar" style="height:90px">
+        <a href="<%= url_for :controller=>:RhoMonitor ,:action => :reset %>" ><img src="\public\images\rcm\reset-icon.png" width="72px" height="72px"/></a>
+        </div></div>
+        <div class="ui-block-c"><div class="ui-bar " style="height:90px">
+        <a href="<%= url_for :action => :logout %>"><img src="\public\images\rcm\logout-icon.png" width="72px" height="72px"/></a>
+        </div></div>
       </div>
       
 </div>
