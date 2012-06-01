@@ -1,4 +1,4 @@
-<div data-role="page" data-theme="b">
+<div data-role="page" data-theme="a">
   
   <div data-role="header" data-position="inline">
     <h1>Registered users </h1>
@@ -11,20 +11,21 @@
   </div>
 
   <div data-role="content" >
-    <div class="content-primary"> 
-      <ul data-role="listview" data-split-icon="gear" data-split-theme="d">
+    <div  style="height:200px;">
+      <ul data-role="listview" data-split-icon="delete" data-split-theme="d">
       <% @users.each do |user| %>
-          <li><a href="<%=url_for :action => :user_dashboard,:query => {:name=>user} %>">
-            <img src="/public/images/live-user.png" />
+          <li ><h3></h3><a href="<%=url_for :action => :user_dashboard,:query => {:name=>user} %>">
+            <img src="\public\images\rcm\user-icon.png" height="100%"/>
             <h3></h3>
-            <p><%= user %></p>
+            <p style="padding:12px;font-size:20px;"><%= user %></p>
             </a>
+            <h1></h1>
             <a href="<%=url_for(:action => :delete ,:query => {:name=>user} )%>">
             Delete</a>
           </li>
       <% end %>
       </ul>
-      </div>
+  </div>
   </div>
 
 </div>
