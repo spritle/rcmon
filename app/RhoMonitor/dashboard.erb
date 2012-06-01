@@ -1,16 +1,16 @@
-<div data-role="page" data-theme="b">
-	<div data-role="header" data-position="inline">
+<div data-role="page" data-theme="a">
+	<div data-role="header" data-position="inline" >
 		<h1>Dashboard</h1>
 		<a href="<%= url_for :action => :logout %>" class="ui-btn-right" >
 		 Logout
 		</a>
 	</div>
 
-	<div data-role="content">
-      <div data-role="fieldcontain">
+	<div data-role="content" >
+      <div data-role="fieldcontain" >
         <a href="<%= url_for :controller=>:Info ,:action => :index %>" ><label  class="fieldLabel">License</label></a>
       </div>
-      <div data-role="fieldcontain">
+      <div data-role="fieldcontain" data-theme="a">
         <a href="<%= url_for :controller=>:Users ,:action => :index %>"  ><label  class="fieldLabel">Users</label></a>
       </div>
       <div data-role="fieldcontain">
