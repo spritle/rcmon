@@ -11,17 +11,17 @@
   </div>
 
   <div data-role="content" >
-      <ul data-role="listview" >
+      
             <% @sources.each do |source| %>
             
-                <li>
-                  <a href="<%= url_for :action => :source_param , :query => {:source_name => source,:user_name =>@params['user_name'] } %>">
-                    <%= source %>
-                  </a>
-                </li>
+                  
+                  <a href="<%= url_for :action => :source_param , :query => {:source_name => source,:user_name =>@params['user_name'] } %>" style="text-decoration: none;">
+                    <div><%= source %><img src="\public\images\rcm\hand-point-icon.png" style="float:right;"/></div>
+                  </a><hr>
+              
             
             <% end %>
-          </ul>
+         
   </div>
 
 </div>
