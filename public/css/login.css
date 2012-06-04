@@ -1,0 +1,53 @@
+#login_box .input
+{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #555555;
+    display: inline-block;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 9px;
+//    width: 210px;
+}
+
+#login_box
+{
+//padding:60px 20px 30px 30px;
+padding: 30px 20px 20px 10px;
+border:solid 1px #dedede;
+width:238px;
+//background-color:#fcfcfc;
+margin-top:70px;
+
+}
+#img_box
+{
+   background-color: #FFFFFF;
+   // border: 1px solid #DEDEDE;
+   
+   
+    margin-left: 77px;
+    margin-top: -108px;
+    position: absolute;
+    width: 86px;
+ height: 86px;
+}
+.user
+{
+background:url('/public/images/login/user.png') 4px no-repeat ;
+}
+.passcode
+{
+background:url('/public/images/login/lock.png') 4px no-repeat;
+}
+
+#login_container
+{
+    overflow: auto;
+   // width: 300px;
+   // padding: 0px 0px 0px 25px;
+    text-align:center;
+
+}
