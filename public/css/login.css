@@ -9,45 +9,36 @@
     height: 18px;
     line-height: 18px;
     margin-bottom: 9px;
-//    width: 210px;
 }
 
 #login_box
 {
-//padding:60px 20px 30px 30px;
-padding: 30px 20px 20px 10px;
+padding: 30px 20px 20px 0px;
 border:solid 1px #dedede;
 width:238px;
-//background-color:#fcfcfc;
-margin-top:70px;
-
+margin-top:50px;
 }
 #img_box
 {
-   background-color: #FFFFFF;
-   // border: 1px solid #DEDEDE;
-   
-   
-    margin-left: 77px;
-    margin-top: -108px;
-    position: absolute;
-    width: 86px;
- height: 86px;
+	background-color: #FFFFFF;
+ 	//border: 1px solid #DEDEDE;
+	margin-left: 80px;
+	margin-top: -90px;
+	position: absolute;
+	width: 80px;
+	height: 80px;
 }
 .user
 {
-background:url('/public/images/login/user.png') 4px no-repeat ;
+background:url(/public/images/login/user.png) 9px no-repeat ;
 }
 .passcode
 {
-background:url('/public/images/login/lock.png') 4px no-repeat;
+background:url(/public/images/login/lock.png) 9px no-repeat;
 }
 
 #login_container
 {
     overflow: auto;
-   // width: 300px;
-   // padding: 0px 0px 0px 25px;
     text-align:center;
-
 }
