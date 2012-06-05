@@ -87,10 +87,15 @@ module BrowserHelper
     elsif str == 'adapter'
       request_url =  Rho::RhoConfig.server + "/api/get_adapter"
     end
-    Rho::AsyncHttp.post( :url => request_url,
+    return Rho::AsyncHttp.post( :url => request_url,
                          :body => {:api_token => Rho::RhoConfig.token}.to_json,
                          :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
                        )
+    #puts "______________POST API Helper___________________"
+    #puts "Request URL : #{request_url}"
+   # puts "Token : #{Rho::RhoConfig.token}"
+    #puts "Cookie : #{Rho::RhoConfig.cookie}"
+    #puts "_______________________________________________"
   end
   
   def get_device_param(client)

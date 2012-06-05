@@ -1,0 +1,44 @@
+#login_box .input
+{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #555555;
+    display: inline-block;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 9px;
+}
+
+#login_box
+{
+padding: 30px 20px 20px 0px;
+border:solid 1px #dedede;
+width:238px;
+margin-top:50px;
+}
+#img_box
+{
+	background-color: #FFFFFF;
+ 	//border: 1px solid #DEDEDE;
+	margin-left: 80px;
+	margin-top: -90px;
+	position: absolute;
+	width: 80px;
+	height: 80px;
+}
+.user
+{
+background:url(/public/images/login/user.png) 9px no-repeat ;
+}
+.passcode
+{
+background:url(/public/images/login/lock.png) 9px no-repeat;
+}
+
+#login_container
+{
+    overflow: auto;
+    text-align:center;
+}
