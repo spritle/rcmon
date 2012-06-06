@@ -14,6 +14,7 @@ class RhoMonitorController < Rho::RhoController
       render :action => :dashboard
     end
   end
+  
   def server_login
     puts "started...................."
     server =@params['rho_monitor']['url']
