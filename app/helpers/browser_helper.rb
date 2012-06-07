@@ -136,4 +136,16 @@ module BrowserHelper
                         :headers => {"Content-Type" => "application/json","Cookie" => Rho::RhoConfig.cookie}
                       )
  end
+ def get_user_destroy
+   Users.find(:all).each do |u|
+    u.destroy
+   end
+  end
+  def  get_info_destroy
+    Info.find(:all).each do |i|
+     i.destroy
+     puts "destroy----"
+    end
+  end
+ 
 end

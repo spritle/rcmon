@@ -1,10 +1,3 @@
-<style>
- .box { width: 120px; height: 147px; float: left;  margin: 6px; color: #fff; text-shadow: 0 1px 0 #000; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; text-align: center;}
- .blue { background-color: #14AED5; }
- .green { background-color: #76DC00; }
- .box_title { width: 100%; height: 20px; padding-top: 2px;}
-</style>
-
 <div data-role="page" data-theme="a">
   <div data-role="header" data-position="inline" data-theme="a">
     <h1>License Info</h1>
@@ -17,22 +10,30 @@
   </div>
 
   <div data-role="content" >
+      <style>
+       .box { width: 120px; height: 147px; float: left;  margin: 6px; color: #fff; text-shadow: 0 1px 0 #000; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; text-align: center;}
+       .blue { background-color: #14AED5; }
+       .green { background-color: #76DC00; }
+       .box_title { width: 100%; height: 20px; padding-top: 2px;}
+      </style>
+    <% @Info.each do |info|%>    
 		<div class="box blue">
 			<div class="box_title green">Licensed To</div>
-			<br /><%=@license%>
+			<br /><%=info.license %>
 		</div>
 		<div class="box green">
 			<div class="box_title blue">Available</div>
-			<br /><%=@available%>
+			<br /><%=info.available %>
 		</div>
 		<div class="box blue">
 			<div class="box_title green">Total Devices</div>
-			<br /><%=@total%>
+			<br /><%= info.total%>
 		</div>
 		<div class="box green">
 			<div class="box_title blue">Issued on</div>
-			<br /><%=@issued_date%>
+			<br /><%= info.issued_date %>
 		</div>
+    <% end %>
   </div>
 </div>
 

@@ -41,6 +41,7 @@ class RhoMonitorController < Rho::RhoController
   def logout
     puts "---------------logout-----------"
     Rho::RhoConfig.token=""
+    get_info_destroy
     render :action =>:login
   end
   
