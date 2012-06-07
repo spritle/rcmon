@@ -46,11 +46,23 @@ class RhoMonitorController < Rho::RhoController
   end
   
   def reset
-    response = get_api('rest')
-    if response['status']=="ok" 
-      Alert.show_status("Notification", response['body'], 'OK')
-    end
+    Alert.show_popup( {
+        :message => 'Are you sure want to reset database?', 
+        :title => 'Database Reset', 
+        :icon => '',
+        :buttons => ["Yes", "No"],
+        :callback => url_for(:action => :on_dismiss_popup) } )
     redirect :action => :dashboard
+  end
+  
+  def on_dismiss_popup
+    if @params['button_title']=='Yes'
+      response = get_api('rest')
+      if response['status']=="ok" 
+        Alert.show_status("Notification", response['body'], 'OK')
+      end
+    else
+    end
   end
   
   def get_adapter
