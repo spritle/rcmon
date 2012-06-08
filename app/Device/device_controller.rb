@@ -29,14 +29,15 @@ class DeviceController < Rho::RhoController
   end
   
   def delete
-    response = delete_api_device(@@user_name,@params['user_name'])
+    response = delete_api_device(@@user_name,@params['device_name'])
     if response['status']=="ok" 
-      redirect  :action => :index, :user_name=>@@user_name
+      redirect  :action => :index, :query =>{:user_name=>@@user_name}
       Alert.show_status("Notification", response['body'], 'OK')
     end
   end
   
   def device_param
+    @device_name = @params['device_name']
     response = get_device_param(@params['device_name'])
     if response['status']=="ok" 
       @device_params=Rho::JSON.parse(response["body"])

@@ -48,7 +48,7 @@ class UsersController < Rho::RhoController
   end
   
   def delete
-    response = delete_api_user(@params['name'])
+    response = delete_api_user(@params['user_name'])
     if response['status']=="ok" 
       Alert.show_status("Notification", response['body'], 'OK')
     end
@@ -57,6 +57,6 @@ class UsersController < Rho::RhoController
   end
   
   def user_dashboard
-    @user=@params['name']
+    @user=@params['user_name']
   end
 end
