@@ -11,34 +11,27 @@
   </div>
 
   <div data-role="content" >
-  <div>
-    <table>
+  
+      <ul data-role="listview" data-inset="true" data-theme="c">
       <% @source_params.each do |params| %>
-           <tr>
               <% if params['value'] && params['value']!=""%>
-              <td><label class="fieldLabel"><%= params['name'] %></label></td>
-              <td><label class="fieldLabel">:<%= params['value'] %></label></td>
+              <li><label class="fieldLabel"><%= params['name'] %></label>
+              <label class="fieldLabel" style="text-align:center;">:</label>
+              <label class="fieldLabel" style="float:right;"><%= params['value'] %></label></li>
               <% end %>
-           </tr>
       <% end %>
+    
        <% if @params['user_name']!="" %>
-            <tr>
-               <td>md</td>
-               <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['md'] %></a></td>
-            </tr>
-            <tr> 
-               <td>errors</td>
-               <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['errors'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['errors'] %></a></td>
-            </tr>
-            <tr> 
-                <td>md_copy</td>
-                <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_copy'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['md_copy'] %></a></td>
-            </tr>
-            <tr> 
-                <td>md_size</td>
-                <td>:<a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_size'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['md_size'] %></a></td>
-            </tr>
+               <li>md:
+                <a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['md'] %></a></li>
+               <li>errors:
+               <a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['errors'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['errors'] %></a></li>
+               <li>md_copy:
+                <a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_copy'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['md_copy'] %></a></li>
+               <li>md_size:
+                <a href="<%= url_for :action => :source_doc ,:query => {:doc =>@list_source_docs['md_size'],:source_name =>@params['source_name'],:user_name =>@params['user_name']} %>"><%= @list_source_docs['md_size'] %></a></li>
+          
       <% end %>
-    </table>
+   </ul>
   </div>
 </div>

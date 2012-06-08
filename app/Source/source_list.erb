@@ -11,17 +11,10 @@
   </div>
 
   <div data-role="content" >
-      
             <% @sources.each do |source| %>
-            
-                  
                   <a href="<%= url_for :action => :source_param , :query => {:source_name => source,:user_name =>@params['user_name'] } %>" style="text-decoration: none;">
-                    <div><%= source %><img src="\public\images\rcm\hand-point-icon.png" style="float:right;"/></div>
+                    <div data-role="fieldcontain" ><%= source %><img src="\public\images\rcm\hand-point-icon.png" style="float:right;"/></div>
                   </a><hr>
-              
-            
             <% end %>
-         
   </div>
-
 </div>

@@ -12,24 +12,20 @@
 
   <div data-role="content" >
       <label class="fieldLabel" style="font-size:18px;">Document  [<%= @params['doc'] %>]</label><br/><br/>
-      <table>
+     
       <% if @source_db_doc == {} %>
           Document is empty
         <% end %>
+     
           <% @source_db_doc.each do |data| %>
-               <tr>
-                <td><label class="fieldLabel"><a><%= data[0] %></a></label></td>
-               </tr>
-              
+            <ul data-role="listview" data-inset="true" data-theme="c">
+             <li> <label class="fieldLabel"><a><%= data[0] %></a></label></li>
                 <% data[1].each do |params| %>
-                <tr>
-                  <td><label class="fieldLabel"><%= params[0]  %></label></td>
-                  <td><label class="fieldLabel"><%= params[1]  %></label></td>
-               </tr>
+                 <li><label class="fieldLabel"><%= params[0]  %></label>
+                 <label class="fieldLabel">:<%= params[1]  %></label></li>
                 <% end %>
-               
+                </ul>
           <% end %>
-       
-        </table>
+      
   </div>
 </div>
