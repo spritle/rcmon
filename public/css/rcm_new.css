@@ -1,0 +1,47 @@
+/* Fixes images on More index */
+#centeredimage{ 
+	position:absolute; 
+	left:0%; 
+	top:5%; 
+	width:20%; 
+}
+
+/* Custom Nav Bar */
+.nav-cust .ui-btn .ui-btn-inner { 
+	padding-top: 40px !important; 
+	font-size: 11px;
+}
+.nav-cust .ui-btn .ui-icon { 
+	width: 30px!important;
+	height: 30px!important; 
+	margin-left: -15px !important; 
+	box-shadow: none!important; 
+	-moz-box-shadow: none!important; 
+	-webkit-box-shadow: none!important; 
+	-webkit-border-radius: 0 !important; 
+	border-radius: 0 !important; 
+	font-size: 10px;
+}
+#dashboard .ui-icon { 
+	background:  url(/public/images/rcm/Home-icon.png) no-repeat; 		
+	
+}
+#refresh .ui-icon { 
+	background:  url(/public/images/rcm/refresh-icon.png)  no-repeat;
+	
+}
+#logout .ui-icon { 
+	background:  url(/public/images/rcm/logout-icon1.png) no-repeat;  
+	
+}
+
+
+.li-banner {
+	height:50%;
+	width:100%;
+	text-align:center;
+}
+
+.dvd-img {
+	width:100px;
+}
