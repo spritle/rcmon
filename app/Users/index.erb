@@ -14,13 +14,13 @@
     <div>
       <ul data-role="listview" data-split-icon="delete" data-split-theme="d">
       <% @users.each do |user| %>
-          <li ><h3></h3><a href="<%=url_for :action => :user_dashboard,:query => {:name=>user} %>">
+          <li ><h3></h3><a href="<%=url_for :action => :user_dashboard,:query => {:name=>user.user} %>">
             <img src="\public\images\rcm\user-icon.png" height="95%"/>
             <h3></h3>
-            <div style="padding:12px 56px 0px 0px;font-size:17px;"><%= user %></div>
+            <div style="padding:12px 56px 0px 0px;font-size:17px;"><%= user.user %></div>
             </a>
             <h1></h1>
-            <a href="<%=url_for(:action => :delete ,:query => {:name=>user} )%>">
+            <a href="<%=url_for(:action => :delete ,:query => {:name=>user.user} )%>">
             Delete</a>
           </li>
       <% end %>

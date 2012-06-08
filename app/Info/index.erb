@@ -11,6 +11,7 @@
 
   <div data-role="content" >
       <style>
+      
       ul,li{
         list-style:none;
       }
@@ -88,31 +89,34 @@
       }
       </style>
       <ul>
+      <% @Info.each do |info|%> 
           <li>
             <a href="#">
               <h2>Licensed To</h2>
-              <p><%=@license%></p>
+              <p><%=info.license %></p>
             </a>
           </li>
           <li>
             <a href="#">
               <h2>Available</h2>
-              <p><%=@available%></p>
+              <p><%=info.available %></p>
             </a>
           </li>
           <li>
             <a href="#">
               <h2>Total Devices</h2>
-              <p><%=@total%></p>
+              <p><%= info.total%></p>
             </a>
           </li>
         <li>
             <a href="#">
               <h2>Issued on</h2>
-              <p><%=@issued_date%></p>
+              <p><%= info.issued_date %></p>
             </a>
           </li>
+        <% end %>
       </ul>
+
   </div>
 </div>
 
