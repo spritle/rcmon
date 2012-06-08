@@ -9,17 +9,21 @@
      Logout
     </a>
   </div>
-
+  <%i=true%>
   <div data-role="content" >
-    <table>
+      <ul data-role="listview" data-inset="true" data-theme="d" data-divider-theme="a"> 
       <% @device_params.each do |params| %>
-           <tr>
-              <% if params['value'] && params['value']!=""%>
-              <td><label class="fieldLabel"><%= params['name'] %></label></td>
-              <td><label class="fieldLabel">:<%= params['value'] %></label></td>
-              <% end %>
-           </tr>
+        <% if params['value'] && params['value']!=""%>
+           <% if i%>
+              <li data-role="list-divider"><%= params['value'] %></li>
+              <%i=false%>
+          <%else%>
+            <li><%= params['name'] %> <span class="ui-li-aside"><%= params['value'] %></span></li>
+          <%end%>
+        <% end %>
       <% end %>
-    </table>
+      <li>Destroy device<span class="ui-li-aside"><a href="<%=url_for(:controller=>:Device,:action => :delete ,:query => {:device_name=>@device_name} )%>"><img src="\public\images\rcm\delete.png" width="20" height="20"/></a></span></li>
+      </ul>
+      
   </div>
 </div>

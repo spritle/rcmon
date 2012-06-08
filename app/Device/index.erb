@@ -2,29 +2,20 @@
 
   <div data-role="header"  data-position="inline">
     <h1>Devices</h1>
-    <a href="<%= url_for( :controller=>:Users,:action => :user_dashboard ,:query => {:name=> @params['user_name']} )%>" class="ui-btn-left" data-icon="back" data-direction="reverse" <%= "data-ajax='false'" if is_bb6 %>>
+    <a href="<%= url_for( :controller=>:Users,:action => :user_dashboard ,:query => {:user_name=> @params['user_name']} )%>" class="ui-btn-left" data-icon="back" data-direction="reverse" <%= "data-ajax='false'" if is_bb6 %>>
       Back
     </a>
     <a href="<%= url_for( :action => :new ,:query => {:name=> @params['user_name']} )%>" class="ui-btn-right" data-icon="plus">
       Create
     </a>
   </div>
-
-  <div data-role="content">
-      <div >
-        
-        <% @devices.each do |device| %>
-          
-                <a href="<%= url_for :action => :device_param , :query => {:device_name => device,:user_name=>@params['user_name']} %>" style="text-decoration:none;">
-                 <img src="\public\images\rcm\Cellphone-icon1.png" />                
-                 <label  class="fieldLabel" style="font-size:11px;font-color:black;"> <%= device %></label>
-                </a>
-                <a href="<%=url_for(:action => :delete ,:query => {:name=>device} )%>">
-                 <img src="\public\images\rcm\delete.png" height="20px" width="20px" style="float:right;padding: 10px;"/> </a>
-               <br/><br/>
-        <% end %>
       
-      </div>
+  <div data-role="content">
+      <ul data-role="listview" data-inset="true" data-theme="d" data-divider-theme="a">
+        <li data-role="list-divider">Devices</li>
+        <% @devices.each do |device| %>
+          <li><a href="<%= url_for :action => :device_param , :query => {:device_name => device,:user_name=>@params['user_name']} %>"><%= device %></a></li>
+          <% end %>
+      </ul>
   </div>
-
 </div>

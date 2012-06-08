@@ -1,7 +1,7 @@
 <div data-role="page" data-theme="a">
   <div data-role="header" data-position="inline">
    <h1>User Dashboard </h1>
-   <a href="<%= url_for :action => :index %>" class="ui-btn-left" data-icon="back" >
+   <a href="<%= url_for :action => :index,:query => {:user_name=>@user} %>" class="ui-btn-left" data-icon="back" >
     Back
    </a>
    <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
@@ -10,13 +10,15 @@
  </div>
 
   <div data-role="content">
-     <a href="<%=url_for(:controller=>:Device,:action => :index ,:query => {:user_name=>@user} )%>" style="text-decoration:none;"><div >
-         <img src="\public\images\rcm\Cellphone-icon.png"><img src="\public\images\rcm\Cellphone-icon1.png">&nbsp;&nbsp;<label  class="fieldLabel">Devices<img src="\public\images\rcm\hand-point-icon.png" style="float:right;padding: 15px;"/></label><br/>
-     <img src="\public\images\rcm\Cellphone-icon1.png">
-     </div></a><hr/>
-     <a href="<%= url_for :controller=>:Source ,:action => :source_list,:query => {:user_name=>@user} %>" style="text-decoration:none;">
-     <div>
-          <img src="\public\images\rcm\source1.png"><img src="\public\images\rcm\source2.png">&nbsp;&nbsp;<label  class="fieldLabel">Sources<img src="\public\images\rcm\hand-point-icon.png" style="float:right;padding: 15px;"/></label><br/>
-     &nbsp;&nbsp;<img src="\public\images\rcm\source2.png">
-      </div></a><hr/>
+     
+     <div class="ui-grid-a">
+       <div class="ui-block-a"><div class="ui-bar " style="height:180px">
+       <a href="<%=url_for(:controller=>:Device,:action => :index ,:query => {:user_name=>@user} )%>" ><img src="\public\images\rcm\device.png" width="100px" height="100px"/><div>Devices</div></a>
+       </div></div>
+       <div class="ui-block-b"><div class="ui-bar " style="height:180px">
+       <a href="<%= url_for :controller=>:Source ,:action => :source_list,:query => {:user_name=>@user} %>"><img src="\public\images\rcm\sources.png" width="100px" height="100px"/><div>Sources</div></a>
+       </div></div>
+     </div>
+  
+  </div>
 </div>
