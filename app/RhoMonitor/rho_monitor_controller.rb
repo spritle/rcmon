@@ -1,7 +1,6 @@
 require 'rho/rhocontroller'
 require 'helpers/browser_helper'
 require 'json'
-
 class RhoMonitorController < Rho::RhoController
   include BrowserHelper
 
@@ -71,5 +70,31 @@ class RhoMonitorController < Rho::RhoController
       Alert.show_status("Notification", response['body'], 'OK')
     end
     redirect :action => :dashboard
+  end
+  
+  def ping_status
+    Rho::AsyncHttp.get(
+    :url => Rho::RhoConfig.server,
+    :callback => (url_for :action => :httpget_callback),
+    :callback_params => "") 
+    redirect :action => :dashboard
+  end
+  
+  def httpget_callback
+    if @params['status']=='ok' and @params['http_error']=='200'
+      Alert.show_popup( {
+              :message => 'Rhoconnect server is running', 
+              :title => 'Server Status', 
+              :icon => '',
+              :buttons => ["Ok"],
+              :callback => '' } )
+    else
+      Alert.show_popup( {
+                    :message => 'Rhoconnect server is not running', 
+                    :title => 'Server Status', 
+                    :icon => '',
+                    :buttons => ["Ok"],
+                    :callback => '' } )
+    end
   end
 end
