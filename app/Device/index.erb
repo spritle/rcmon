@@ -5,7 +5,7 @@
     <a href="<%= url_for( :controller=>:Users,:action => :user_dashboard ,:query => {:user_name=> @params['user_name']} )%>" class="ui-btn-left" data-icon="back" data-direction="reverse" <%= "data-ajax='false'" if is_bb6 %>>
       Back
     </a>
-    <a href="<%= url_for( :action => :new ,:query => {:name=> @params['user_name']} )%>" class="ui-btn-right" data-icon="plus">
+    <a href="<%= url_for( :action => :new ,:query => {:user_name=>@params['user_name']} )%>" class="ui-btn-right" data-icon="plus">
       Create
     </a>
   </div>
@@ -14,7 +14,7 @@
       <ul data-role="listview" data-inset="true" data-theme="d" data-divider-theme="a">
         <li data-role="list-divider">Devices</li>
         <% @devices.each do |device| %>
-          <li><a href="<%= url_for :action => :device_param , :query => {:device_name => device,:user_name=>@params['user_name']} %>"><%= device %></a></li>
+          <li><a href="<%= url_for :action => :device_param , :query => {:device_name => device.device,:user_name=>@params['user_name']} %>"><%= device.device %></a></li>
           <% end %>
       </ul>
   </div>
@@ -22,7 +22,7 @@
     <div data-role="navbar" class="nav-cust" data-grid="b">
       <ul>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" >Dashboard</a></li>
-        <li><a href="#" id="refresh" data-icon="custom">Refresh</a></li>
+        <li><a href="<%= url_for :action => :device_refresh  , :query => {:user_name=>@params['user_name']}%>" id="refresh" data-icon="custom">Refresh</a></li>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
       
       </ul>

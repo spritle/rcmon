@@ -17,8 +17,8 @@
           <legend>Choose users to ping:</legend>
           <%i=1%>
             <% @users.each do |user| %>
-                <input type="checkbox" name="<%=user%>" id="checkbox-<%=i%>" class="custom" />
-                  <label for="checkbox-<%=i%>"><%= user %></label>
+                <input type="checkbox" name="<%=user.user%>" id="checkbox-<%=i%>" class="custom" />
+                  <label for="checkbox-<%=i%>"><%= user.user %></label>
                   <%i+=1%>
             <% end %>
           </fieldset>
@@ -26,14 +26,13 @@
        <input type="submit" value="Ping"/>
        </form>
   </div>
-              <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
-                  <div data-role="navbar" class="nav-cust" data-grid="b">
-                    <ul>
-                      <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" >Dashboard</a></li>
-                      <li><a href="#" id="refresh" data-icon="custom">Refresh</a></li>
-                      <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
-                    
-                    </ul>
-                  </div>
-                </div>
+  <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
+       <div data-role="navbar" class="nav-cust" data-grid="b">
+          <ul>
+             <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" >Dashboard</a></li>
+             <li><a href="<%= url_for :action => :ping_user_refresh %>" id="refresh" data-icon="custom">Refresh</a></li>
+             <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
+         </ul>
+       </div>
+ </div>
 </div>

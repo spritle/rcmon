@@ -6,17 +6,27 @@ class PingController < Rho::RhoController
   
   # GET /Ping
   def index
-    list_users =  get_api('users')
-    if list_users['status']=="ok"  
-      @users = Rho::JSON.parse(list_users["body"])
-    else 
-       render  :controller=>:RhoMonitor, :action => :dashboard
+      @users=Users.find(:all)
+         if @users != []
+           @users=Users.find(:all)
+         else  
+         list_users =  get_api('users')
+         if list_users['status']=="ok"  
+           @users = Rho::JSON.parse(list_users["body"])
+           @users.each do |user|
+           @users=Users.new({:user=>user})
+           @users.save
+           end
+           @users=Users.find(:all) 
+         else 
+            render  :controller=>:RhoMonitor, :action => :dashboard
+         end
+        end
     end
-  end
   
   def ping_form
-    list_users =  get_api('users')
-    @users = Rho::JSON.parse(list_users["body"])
+    p @params,"-------------------------o-o"
+    @users=Users.find(:all)
     @@users=[]
     @users.each do |user|
       if @params[user] == "on"
@@ -24,9 +34,7 @@ class PingController < Rho::RhoController
       end
     end
   end
-  
   def ping_users
-    p "..............................ping!!!!"
     message=@params['rho_monitor']['message']
     vibrate=@params['rho_monitor']['vibrate']
     sound=@params['rho_monitor']['sound']
@@ -34,9 +42,14 @@ class PingController < Rho::RhoController
     list_sources=get_source("user")
     sources=Rho::JSON.parse(list_sources["body"])
     response=get_ping(message,sources,vibrate,sound,@@users)
-    p response,"------Response"
     Alert.show_status("Alert Box", "Sucessfully Ping following users -" +  response['body'], 'OK')
     redirect ( url_for :controller=>:RhoMonitor, :action => :dashboard ) 
   end
- 
+  def ping_user_refresh
+    get_user_destroy
+    redirect :action => :index
+  end
+  def ping_form_refresh
+    redirect :action => :index 
+  end
 end

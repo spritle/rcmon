@@ -6,11 +6,22 @@ class DeviceController < Rho::RhoController
   # GET /Device
   def index
    @@user_name = @params['user_name']
+   @devices=Device.find(:all)
+   if  @devices!=[]
+     @devices=Device.find(:all)
+   else
    list_devices =  get_device(@params['user_name'])
    if list_devices['status']=="ok"  
      @devices = Rho::JSON.parse(list_devices["body"])
+     @devices.each do |device|
+       @devices=Device.new({:device=>device})
+       @devices.save
+       end
+     @devices=Device.find(:all)
+       
    else 
       redirect  :controller=>:RhoMonitor, :action => :dashboard
+   end
    end
   end
 
@@ -44,5 +55,15 @@ class DeviceController < Rho::RhoController
     else
       @device_params=[]
     end
+  end
+  def device_refresh
+    get_devices_destroy
+    redirect  :action => :index, :query =>{:user_name=>@@user_name}
+  end
+  def device_params_refresh 
+    redirect  :action => :device_param, :query => {:device_name =>  @params['device_name'],:user_name=> @params['user_name']}
+  end
+  def new_refresh
+    redirect  :action => :new, :query =>{:user_name=>@@user_name}
   end
 end

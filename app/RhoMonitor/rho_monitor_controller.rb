@@ -40,8 +40,9 @@ class RhoMonitorController < Rho::RhoController
   def logout
     puts "---------------logout-----------"
     Rho::RhoConfig.token=""
-    get_info_destroy
-    render :action =>:login
+    get_destroy
+    p "-----------get_destroy----------------"
+	render :action =>:login
   end
   
   def reset
@@ -96,5 +97,8 @@ class RhoMonitorController < Rho::RhoController
                     :buttons => ["Ok"],
                     :callback => '' } )
     end
+  end
+  def dashboard_refresh
+    redirect :action => :dashboard
   end
 end

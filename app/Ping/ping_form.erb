@@ -17,24 +17,23 @@
            <input type="text" id="rho_monitor[message]" name="rho_monitor[message]" value="Hello World" />
          </div>
          <div data-role="fieldcontain">
-             <label for="rho_monitor[vibrate]" class="fieldLabel">Vibrate</label>
+           <label for="rho_monitor[vibrate]" class="fieldLabel">Vibrate</label>
            <input type="text" id="rho_monitor[vibrate]" name="rho_monitor[vibrate]" value="2000" />
          </div>
          <div data-role="fieldcontain">
-             <label for="rho_monitor[sound]" class="fieldLabel">Sound</label>
-              <input type="text" id="rho_monitor[sound]" name="rho_monitor[sound]" value="hello.mp3" />
+           <label for="rho_monitor[sound]" class="fieldLabel">Sound</label>
+           <input type="text" id="rho_monitor[sound]" name="rho_monitor[sound]" value="hello.mp3" />
          </div>
          <input type="submit" value="Ping"/>
        </form>
   </div>
-               <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
-                   <div data-role="navbar" class="nav-cust" data-grid="b">
-                     <ul>
-                       <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" >Dashboard</a></li>
-                       <li><a href="#" id="refresh" data-icon="custom">Refresh</a></li>
-                       <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
-                     
-                     </ul>
-                   </div>
-                 </div>
+  <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
+      <div data-role="navbar" class="nav-cust" data-grid="b">
+       <ul>
+         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" >Dashboard</a></li>
+         <li><a href="<%= url_for :action => :ping_user_refresh %>" id="refresh" data-icon="custom">Refresh</a></li>
+         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
+       </ul>
+  </div>
+ </div>
 </div>

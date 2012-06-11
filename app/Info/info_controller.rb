@@ -8,15 +8,11 @@ class InfoController < Rho::RhoController
   
   def index
      @Info=Info.find(:all)
-     p @Info ,"///----------------"
-     if @Info !=[]
+    if @Info !=[]
        @Info=Info.find(:all)
-      p "true---------------------API Call is No===========" 
-     else
-      p"-----------------------else"
-     p "--------------------------s"
+    else
      license_info =  get_api('license')
-    if license_info['status']=="ok"  
+      if license_info['status']=="ok"  
       result = Rho::JSON.parse(license_info["body"])                          
       @available = result["available"]
       @total = result["seats"]
@@ -25,19 +21,15 @@ class InfoController < Rho::RhoController
       @issued_date =date_format(@issued)
       @issued_time =time_format(@issued)
       @Info=Info.new({:available =>@available,:total => @total,:license =>@license ,:issued_date => @issued_date })
-      p"==========API Calling==Info==========="
       @Info.save
-       @Info=Info.find(:all)
-      p @Info,"-----------------"
-    else 
+      @Info=Info.find(:all)
+      else 
        render  :controller=>:RhoMonitor, :action => :dashboard
-    end
-   end
-    Thread.new do
-       sleep(100)
-        p "**********Thread--222222222--------------------------"
-       get_info_destroy
-    end
+      end
+     end
   end
-  
+  def info_refresh
+    get_info_destroy
+    redirect :action => :index
+  end 
 end

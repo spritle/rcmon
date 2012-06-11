@@ -8,7 +8,7 @@ class AppApplication < Rho::RhoApplication
     #To remove default toolbar uncomment next line:
     @@toolbar = nil
     @default_menu = {
-         "Dashboard" => "/app/RhoMonitor/dashboard", 
+         
          "Close" => :close
        }
     super

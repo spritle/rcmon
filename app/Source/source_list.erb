@@ -12,8 +12,8 @@
 
   <div data-role="content" >
             <% @sources.each do |source| %>
-                  <a href="<%= url_for :action => :source_param , :query => {:source_name => source,:user_name =>@params['user_name'] } %>" style="text-decoration: none;">
-                    <div data-role="fieldcontain" ><%= source %><img src="\public\images\rcm\hand-point-icon.png" style="float:right;"/></div>
+                  <a href="<%= url_for :action => :source_param , :query => {:source_name => source.source,:user_name =>@params['user_name'] } %>" style="text-decoration: none;">
+                    <div data-role="fieldcontain" ><%= source.source %><img src="\public\images\rcm\hand-point-icon.png" style="float:right;"/></div>
                   </a><hr>
             <% end %>
   </div>
@@ -21,7 +21,7 @@
           <div data-role="navbar" class="nav-cust" data-grid="b">
             <ul>
               <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom">Dashboard</a></li>
-              <li><a href="#" id="refresh" data-icon="custom">Refresh</a></li>
+              <li><a href="<%= url_for :action => :source_refresh %>" id="refresh" data-icon="custom">Refresh</a></li>
               <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
             
             </ul>

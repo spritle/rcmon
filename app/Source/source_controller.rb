@@ -6,8 +6,22 @@ class SourceController < Rho::RhoController
 
   # GET /Source
   def source_list
-    list_sources=get_source("user")
-    @sources=Rho::JSON.parse(list_sources["body"])
+    @sources=Source.find(:all)
+       p  @sources,"------------------------"
+       if  @sources != []
+         @sources=Source.find(:all)
+        p @sources,"====================NO API=========users"
+    else
+      list_sources=get_source("user")
+      @sources=Rho::JSON.parse(list_sources["body"])
+        p @sources,"==============="
+      @sources.each do |source|
+      @sources=Source.new({:source=>source})
+      p "==========API Calling============="
+      @sources.save
+      end
+      @sources=Source.find(:all)
+    end
   end
   def source_param
     source_params=get_source_param(@params['source_name'])
@@ -21,4 +35,15 @@ class SourceController < Rho::RhoController
    source_db_doc=get_db_doc(@params['doc'],"hash")
    @source_db_doc=Rho::JSON.parse(source_db_doc["body"]) 
   end
+  def source_refresh
+    p "-----------------source refresh----------"
+    get_source_destroy
+    redirect :action => :source_list
+  end
+  def source_param_refresh
+    redirect (url_for :action => :source_param,:query => {:source_name =>@params['source_name'],:user_name =>@params['user_name'] })
+  end
+  def source_doc_refresh
+     redirect (url_for :action => :source_doc ,:query => {:doc =>@params['doc'],:source_name =>@params['source_name'],:user_name =>@params['user_name']})
+   end
 end

@@ -7,17 +7,14 @@ class UsersController < Rho::RhoController
   # GET /Users
   def index
     @users=Users.find(:all)
-    p @users,"------------------------"
     if @users != []
       @users=Users.find(:all)
-     p @users,"====================NO API=========users"
     else  
     list_users =  get_api('users')
     if list_users['status']=="ok"  
       @users = Rho::JSON.parse(list_users["body"])
       @users.each do |user|
       @users=Users.new({:user=>user})
-      p"==========API Calling============="
       @users.save
       end
       @users=Users.find(:all) 
@@ -25,16 +22,15 @@ class UsersController < Rho::RhoController
        render  :controller=>:RhoMonitor, :action => :dashboard
     end
    end
-    Thread.new do
-      sleep(100)
-      p "**********Thread--1--------------------------"
-      get_user_destroy
-   end
+   
   end
   
   def new
   end
-  
+  def user_refresh
+    get_user_destroy
+    redirect :action => :index
+  end
   def create
     response = create_api_user(@params['users']['name'],@params['users']['password'])
     if response['status']=="ok" 
@@ -58,5 +54,8 @@ class UsersController < Rho::RhoController
   
   def user_dashboard
     @user=@params['user_name']
+  end
+  def user_dashboard_refresh
+    redirect :action => :user_dashboard , :query => {:user_name =>@params['user_name']}
   end
 end

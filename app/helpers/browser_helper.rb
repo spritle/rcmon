@@ -144,8 +144,22 @@ module BrowserHelper
   def  get_info_destroy
     Info.find(:all).each do |i|
      i.destroy
-     puts "destroy----"
     end
   end
- 
+  def  get_source_destroy
+     Source.find(:all).each do |s|
+      s.destroy
+     end
+  end
+  def  get_devices_destroy
+     Device.find(:all).each do |d|
+       d.destroy
+     end
+  end
+  def get_destroy
+    get_info_destroy
+    get_user_destroy
+    get_source_destroy
+    get_devices_destroy
+  end
 end

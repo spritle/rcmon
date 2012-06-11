@@ -1,4 +1,4 @@
-/* Fixes images on More index */
+
 #centeredimage{ 
 	position:absolute; 
 	left:0%; 
@@ -34,14 +34,11 @@
 	background:  url(/public/images/rcm/logout-icon1.png) no-repeat;  
 	
 }
-
-
 .li-banner {
 	height:50%;
 	width:100%;
 	text-align:center;
 }
-
 .dvd-img {
 	width:100px;
 }
