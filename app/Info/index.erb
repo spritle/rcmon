@@ -11,15 +11,15 @@
 
   <div data-role="content" >
       <style>
-      ul,li{
+      ul.style,li{
         list-style:none;
       }
-      ul{
+      ul.style{
         overflow:hidden;
         padding-left:1em;
         padding-right:1em;
       }
-      ul li a{
+      ul.style li a{
         text-decoration:none;
         color:#000;
         background:#ffc;
@@ -34,26 +34,26 @@
         -o-transition:-o-transform .15s linear;
         -webkit-transition:-webkit-transform .15s linear;
       }
-      ul li{
+      ul.style li{
         margin:10px;
         float:left;
       }
-      ul li h2{
+      ul.style li h2{
         font-size:100%;
         font-weight:bold;
         //padding-bottom:5px;
         //text-align:center;
       }
-      ul li p{
+      ul.style li p{
         font-family: arial,sans-serif;
         font-size:100%;
       }
-      ul li a{
+      ul.style li a{
         -webkit-transform: rotate(-6deg);
         -o-transform: rotate(-6deg);
         -moz-transform:rotate(-6deg);
       }
-      ul li:nth-child(even) a{
+      ul.style li:nth-child(even) a{
         -o-transform:rotate(4deg);
         -webkit-transform:rotate(4deg);
         -moz-transform:rotate(4deg);
@@ -61,7 +61,7 @@
         top:5px;
         background:#cfc;
       }
-      ul li:nth-child(3n) a{
+      ul.style li:nth-child(3n) a{
         -o-transform:rotate(-3deg);
         -webkit-transform:rotate(-3deg);
         -moz-transform:rotate(-3deg);
@@ -69,14 +69,14 @@
         top:-5px;
         background:#ccf;
       }
-      ul li:nth-child(5n) a{
+      ul.style li:nth-child(5n) a{
         -o-transform:rotate(5deg);
         -webkit-transform:rotate(5deg);
         -moz-transform:rotate(5deg);
         position:relative;
         top:-10px;
       }
-      ul li a:hover,ul li a:focus{
+      ul.style li a:hover,ul li a:focus{
         box-shadow:8px 8px 7px rgba(0,0,0,.7);
         -moz-box-shadow:8px 8px 7px rgba(0,0,0,.7);
         -webkit-box-shadow: 8px 8px 7px rgba(0,0,0,.7);
@@ -87,7 +87,7 @@
         z-index:5;
       }
       </style>
-      <ul>
+      <ul class="style">
       <% @Info.each do |info|%> 
           <li>
             <a href="#">
