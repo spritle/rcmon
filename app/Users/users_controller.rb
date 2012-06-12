@@ -46,14 +46,27 @@ class UsersController < Rho::RhoController
   end
   
   def delete
-    response = delete_api_user(@params['user_name'])
-    if response['status']=="ok" 
-      Alert.show_status("Notification", response['body'], 'OK')
-    end
-    get_user_destroy
-    redirect :action => :index
+    Alert.show_popup( {
+           :message => 'Are you sure want to delete'+@params['user_name']+'?', 
+           :title => 'Delete User', 
+           :icon => '',
+           :buttons => ["Yes", "No"],
+           :callback => url_for(:action => :delete_popup,:query => {:user_name=>@params['user_name']}) 
+           })
+    redirect :action => :wait
   end
-  
+  def delete_popup
+    p @params,"************delete********"
+    if @params['button_title']=='Yes'
+      response = delete_api_user(@params['user_name'])
+        p "-----------cc"
+      get_user_destroy
+      p "-------------ddd"
+      WebView.navigate(url_for :action=>:index)
+    else
+      WebView.navigate(url_for :action=>:index)
+   end
+  end
   def user_dashboard
     @user=@params['user_name']
   end

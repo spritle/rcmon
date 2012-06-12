@@ -10,10 +10,10 @@ $(document).ready(function() {
       type: 'bar'
     },
     title: {
-      text: 'Historic World Population by Region'
+      text: 'User/Device Statistics'
     },
     subtitle: {
-      text: 'Source: Wikipedia.org'
+      text: ''
     },
     xAxis: {
       categories: [<%  @chart.each do |chart| %>
@@ -36,7 +36,7 @@ $(document).ready(function() {
     tooltip: {
       formatter: function() {
         return ''+
-          this.series.name +': '+ this.y +' millions';
+          this.series.name +': '+ this.y ;
       }
     },
     plotOptions: {
@@ -47,15 +47,7 @@ $(document).ready(function() {
       }
     },
     legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'top',
-      x: -100,
-      y: 100,
-      floating: true,
-      borderWidth: 1,
-      backgroundColor: '#FFFFFF',
-      shadow: true
+    
     },
     credits: {
       enabled: false
