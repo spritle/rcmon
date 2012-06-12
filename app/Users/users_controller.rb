@@ -60,4 +60,7 @@ class UsersController < Rho::RhoController
   def user_dashboard_refresh
     redirect :action => :user_dashboard , :query => {:user_name =>@params['user_name']}
   end
+  def new_refresh
+    redirect :action => :new
+  end
 end

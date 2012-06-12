@@ -5,9 +5,7 @@
     <a href="<%= url_for( :action => :index ,:query => {:user_name=> @params['user_name']} )%>" class="ui-btn-left" data-icon="back" >
      Back
     </a>
-    <a href="<%= url_for :controller=>:RhoMonitor,:action => :logout %>" class="ui-btn-right" >
-     Logout
-    </a>
+    
   </div>
   <%i=true%>
   <div data-role="content" >
@@ -22,7 +20,7 @@
           <%end%>
         <% end %>
       <% end %>
-      <li>Destroy device<span class="ui-li-aside"><a href="<%=url_for(:controller=>:Device,:action => :delete ,:query => {:device_name=>@device_name} )%>"><img src="\public\images\rcm\delete.png" width="20" height="20"/></a></span></li>
+      <li>Delete device<span class="ui-li-aside"><a href="<%=url_for(:controller=>:Device,:action => :delete ,:query => {:device_name=>@device_name} )%>"><img src="\public\images\rcm\delete.png" width="20" height="20"/></a></span></li>
       </ul>
       
   </div>
