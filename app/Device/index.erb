@@ -14,7 +14,7 @@
       <ul data-role="listview" data-inset="true" data-theme="d" data-divider-theme="a">
         <li data-role="list-divider">Devices</li>
         <% @devices.each do |device| %>
-          <li><a href="<%= url_for :action => :device_param , :query => {:device_name => device.device,:user_name=>@params['user_name']} %>"><%= device.device %></a></li>
+          <li><a href="<%= url_for :action => :device_param , :query => {:device_name => device,:user_name=>@params['user_name']} %>"><%= device %></a></li>
           <% end %>
       </ul>
   </div>

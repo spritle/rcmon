@@ -144,6 +144,7 @@ module BrowserHelper
   def  get_info_destroy
     Info.find(:all).each do |i|
      i.destroy
+     p "====destroy"
     end
   end
   def  get_source_destroy
@@ -156,10 +157,16 @@ module BrowserHelper
        d.destroy
      end
   end
+  def get_chart_destroy
+    Chart.find(:all).each do |c|
+        c.destroy
+        p "------,,---------destroy--------------------"
+     end
+  end
   def get_destroy
     get_info_destroy
     get_user_destroy
     get_source_destroy
-    get_devices_destroy
+    get_chart_destroy
   end
 end

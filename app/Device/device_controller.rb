@@ -6,22 +6,12 @@ class DeviceController < Rho::RhoController
   # GET /Device
   def index
    @@user_name = @params['user_name']
-   @devices=Device.find(:all)
-   if  @devices!=[]
-     @devices=Device.find(:all)
-   else
    list_devices =  get_device(@params['user_name'])
    if list_devices['status']=="ok"  
      @devices = Rho::JSON.parse(list_devices["body"])
-     @devices.each do |device|
-       @devices=Device.new({:device=>device})
-       @devices.save
-       end
-     @devices=Device.find(:all)
-       
    else 
       redirect  :controller=>:RhoMonitor, :action => :dashboard
-   end
+  
    end
   end
 

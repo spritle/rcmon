@@ -1,0 +1,85 @@
+<div data-role="page" data-theme="a">
+
+<script type="text/javascript">
+    
+var chart;
+$(document).ready(function() {
+  chart = new Highcharts.Chart({
+    chart: {
+      renderTo: 'container',
+      type: 'bar'
+    },
+    title: {
+      text: 'Historic World Population by Region'
+    },
+    subtitle: {
+      text: 'Source: Wikipedia.org'
+    },
+    xAxis: {
+      categories: [<%  @chart.each do |chart| %>
+        "<%=  chart.user_name %>",
+       <% end %>],
+      title: {
+        text: null
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: '',
+        align: 'high'
+      },
+      labels: {
+        overflow: 'justify'
+      }
+    },
+    tooltip: {
+      formatter: function() {
+        return ''+
+          this.series.name +': '+ this.y +' millions';
+      }
+    },
+    plotOptions: {
+      bar: {
+        dataLabels: {
+          enabled: true
+        }
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'top',
+      x: -100,
+      y: 100,
+      floating: true,
+      borderWidth: 1,
+      backgroundColor: '#FFFFFF',
+      shadow: true
+    },
+    credits: {
+      enabled: false
+    },
+      series: [{
+      name: 'Device count',
+      data: <%= @count %>
+        }]
+  });
+});     
+    </script>
+
+  <div data-role="content" >
+    <div id="container" style="height: 80%;width:80%; margin: 0 auto"></div>
+   
+  </div>
+  
+  <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
+       <div data-role="navbar" class="nav-cust" data-grid="b">
+         <ul>
+            <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" class="ui-btn-active ui-state-persist">Dashboard</a></li>
+            <li><a href="<%= url_for :action => :chart_refresh %>" id="refresh" data-icon="custom">Refresh</a></li>
+            <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
+         </ul>
+       </div>
+  </div>
+</div>

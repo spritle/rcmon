@@ -8,9 +8,11 @@ class UsersController < Rho::RhoController
   def index
     @users=Users.find(:all)
     if @users != []
+      p "------------------No"
       @users=Users.find(:all)
     else  
     list_users =  get_api('users')
+    p "-----------------YES"
     if list_users['status']=="ok"  
       @users = Rho::JSON.parse(list_users["body"])
       @users.each do |user|
