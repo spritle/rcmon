@@ -19,12 +19,19 @@ class RhoMonitorController < Rho::RhoController
     server =@params['rho_monitor']['url']
     login = @params['rho_monitor']['login']
     password = @params['rho_monitor']['password']
-    response= get_cookie(server,login,password)
-    Rho::RhoConfig.cookie = response['cookies']
+    login_response= get_cookie(server,login,password)
+    #puts login_response,"-----0000000000000----------------"
+    # @api_token =Rho::AsyncHttp.post(:url => server + "/rc/v1/system/login",
+    #       :body => {:login => login, :password => password}.to_json,
+    #       :headers => {"Content-Type" => "application/json"})
+    # puts  @api_token,"*************************************************************"
+    Rho::RhoConfig.cookie = login_response['cookies']
+    puts Rho::RhoConfig.cookie,"----------cookie--"
     Rho::RhoConfig.server=server
     response= get_token(Rho::RhoConfig.server,Rho::RhoConfig.cookie)
-    Rho::RhoConfig.token = response["body"]
-    if response['status']=="ok"
+    #puts response,"--------------token-------------------"
+    Rho::RhoConfig.token = login_response["body"]
+    if login_response['status']=="ok"
       render  :action => :dashboard 
     else 
       render  :action => :login
@@ -49,6 +56,7 @@ class RhoMonitorController < Rho::RhoController
   end
   
   def reset
+    puts "-----------------------------"
     Alert.show_popup( {
         :message => 'Are you sure want to reset database?', 
         :title => 'Database Reset', 
@@ -59,10 +67,13 @@ class RhoMonitorController < Rho::RhoController
   end
   
   def on_dismiss_popup
+    puts @params,"dismiss---------------------"
     if @params['button_title']=='Yes'
       response = get_api('rest')
       if response['status']=="ok" 
-        Alert.show_status("Notification", response['body'], 'OK')
+        puts response['body'],"response['body']----------------------"
+       # Alert.show_status("Notification", response['body'], 'OK')
+       WebView.execute_js("show_dialog_box('DB Reseted','','single');")
       end
     else
     end
@@ -71,9 +82,12 @@ class RhoMonitorController < Rho::RhoController
   def get_adapter
     response = get_api('adapter')
     if response['status']=="ok" 
-      Alert.show_status("Notification", response['body'], 'OK')
+      #Alert.show_status("Notification", response['body'], 'OK')
+      response_body=response['body']
+      WebView.execute_js("show_dialog_box('Notification','#{response_body}','single');")
+      #WebView.execute_js("alert('#{response_body}');")
     end
-    redirect :action => :dashboard
+    #redirect :action => :dashboard
   end
   
   def ping_status
@@ -81,24 +95,27 @@ class RhoMonitorController < Rho::RhoController
     :url => Rho::RhoConfig.server,
     :callback => (url_for :action => :httpget_callback),
     :callback_params => "") 
-    redirect :action => :dashboard
+    #redirect :action => :dashboard
   end
   
   def httpget_callback
+    puts @params,"-----------------------------"
     if @params['status']=='ok' and @params['http_error']=='200'
-      Alert.show_popup( {
-              :message => 'Rhoconnect server is running', 
-              :title => 'Server Status', 
-              :icon => '',
-              :buttons => ["Ok"],
-              :callback => '' } )
+      # Alert.show_popup( {
+      #         :message => 'Rhoconnect server is running', 
+      #         :title => 'Server Status', 
+      #         :icon => '',
+      #         :buttons => ["Ok"],
+      #         :callback => '' } )
+      WebView.execute_js("show_dialog_box('Server Status','Rhoconnect server is running','single');")
     else
-      Alert.show_popup( {
-                    :message => 'Rhoconnect server is not running', 
-                    :title => 'Server Status', 
-                    :icon => '',
-                    :buttons => ["Ok"],
-                    :callback => '' } )
+      # Alert.show_popup( {
+      #               :message => 'Rhoconnect server is not running', 
+      #               :title => 'Server Status', 
+      #               :icon => '',
+      #               :buttons => ["Ok"],
+      #               :callback => '' } )
+      WebView.execute_js("show_dialog_box('Server Status','Rhoconnect server is not running','single');")
     end
   end
   def dashboard_refresh

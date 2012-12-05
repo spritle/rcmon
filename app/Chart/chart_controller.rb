@@ -8,16 +8,7 @@ class ChartController < Rho::RhoController
   def index
     @chart=Chart.find(:all)
     p @chart,"--------------------------,,,,,,"
-    if @chart !=[]
-      @chart=Chart.find(:all)
-      @count=[]
-      @chart.each do |chart|
-        count=chart.device_count.to_i 
-        p chart.device_count.class,count.class 
-        @count<<count
-      end
-      p @count,"no -------------------------"
-    else
+    if @chart == []
     @user=Users.find(:all)
     p @user,"=============userddd"
        @user.each do |user|
@@ -30,6 +21,7 @@ class ChartController < Rho::RhoController
          @chart=Chart.new({:user_name => user.user,:device_count =>@device_count})
          @chart.save
        end
+      end
     @chart=Chart.find(:all)
     @count=[]
            @chart.each do |chart|
@@ -37,12 +29,11 @@ class ChartController < Rho::RhoController
              p chart.device_count.class,count.class 
              @count<<count
            end
-    end
-   
+
   end
  def chart_refresh
    p "-------------------------------"
    get_chart_destroy
-   redirect  :action => :index
+   WebView.navigate("/app/Chart/index")
  end
 end

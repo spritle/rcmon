@@ -31,40 +31,54 @@ class UsersController < Rho::RhoController
   end
   def user_refresh
     get_user_destroy
-    redirect :action => :index
+    #redirect :action => :index
+    WebView.navigate(url_for :action => :index)
   end
   def create
-    response = create_api_user(@params['users']['name'],@params['users']['password'])
-    if response['status']=="ok" 
-      Alert.show_status("Notification", response['body'], 'OK')
-    elsif response['status']=="error"
-      Alert.show_status("Error", response['body'], 'OK')
-      render  :action => :new
-    end
+    response = create_api_user(@params['user_name'],@params['user_pwd'])
+    puts response,"-======================--------------------"
+    response_body=response['body'].gsub("'","")
+    puts response_body,"------sasa------------"
     get_user_destroy
-    redirect :action => :index
+    if response['status']=="ok" 
+      puts "-----------------"
+      #Alert.show_status("Notification", response['body'], 'OK')
+      call_back_url='/app/Users/index'
+      WebView.execute_js("show_dialog_box('Notification','#{response_body}','single','#{call_back_url}');")
+      #render  :action => :wait
+    elsif response['status']=="error"
+      #Alert.show_status("Error", response['body'], 'OK')
+      call_back_url='/app/Users/new'
+     WebView.execute_js("show_dialog_box('Notification','#{response_body}','single','');")
+      #render  :action => :wait
+    end
+    
+    
   end
   
   def delete
-    Alert.show_popup( {
-           :message => 'Are you sure want to delete'+@params['user_name']+'?', 
-           :title => 'Delete User', 
-           :icon => '',
-           :buttons => ["Yes", "No"],
-           :callback => url_for(:action => :delete_popup,:query => {:user_name=>@params['user_name']}) 
-           })
-    redirect :action => :wait
+    # Alert.show_popup( {
+    #        :message => 'Are you sure want to delete'+@params['user_name']+'?', 
+    #        :title => 'Delete User', 
+    #        :icon => '',
+    #        :buttons => ["Yes", "No"],
+    #        :callback => url_for(:action => :delete_popup,:query => {:user_name=>@params['user_name']}) 
+    #        })
+    # redirect :action => :wait
   end
   def delete_popup
     p @params,"************delete********"
     if @params['button_title']=='Yes'
       response = delete_api_user(@params['user_name'])
-        p "-----------cc"
-      get_user_destroy
+      @user=Users.find(:all,:conditions => { :user => @params['user_name']})
+      p @user,"-----------cc"
+      #get_user_destroy
+     
+      @user[0].destroy
       p "-------------ddd"
       WebView.navigate(url_for :action=>:index)
-    else
-      WebView.navigate(url_for :action=>:index)
+    # else
+    #   WebView.navigate(url_for :action=>:index)
    end
   end
   def user_dashboard

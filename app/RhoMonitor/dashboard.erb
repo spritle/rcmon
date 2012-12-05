@@ -22,28 +22,29 @@
         <a href="<%= url_for :controller=>:Source ,:action => :source_list %>" ><img src="\public\images\rcm\db-source-icon.png" width="50px" height="50px"/><div>Source</div></a>
         </div></div>
         <div class="ui-block-c"><div class="ui-bar " style="height:100px">
-        <a href="<%= url_for :controller=>:RhoMonitor ,:action => :get_adapter %>" ><img src="\public\images\rcm\adaptor-icon.png" width="50px" height="50px"/><div>Adapter</div></a>
+        <a href="#" id="adapter"><img src="\public\images\rcm\adaptor-icon.png" width="50px" height="50px"/><div>Adapter</div></a>
         </div></div>
         
         <div class="ui-block-a"><div class="ui-bar " style="height:100px">
-        <a href="<%= url_for :controller=>:RhoMonitor ,:action => :ping_status %>"><img src="\public\images\rcm\Run-icon.png" width="50px" height="50px"/><div>Ping</div></a>
+        <a href="#" id="ping_status"><img src="\public\images\rcm\Run-icon.png" width="50px" height="50px"/><div>Ping</div></a>
         </div></div>
         <div class="ui-block-b"><div class="ui-bar" style="height:100px">
-        <a href="<%= url_for :controller=>:RhoMonitor ,:action => :reset %>" ><img src="\public\images\rcm\reset-icon.png" width="50px" height="50px"/><div>Reset</div></a>
+        <a href="#" id="reset_db" ><img src="\public\images\rcm\reset-icon.png" width="50px" height="50px"/><div>Reset</div></a>
         </div></div>
         <div class="ui-block-c"><div class="ui-bar " style="height:100px">
         <a href="<%= url_for :controller => :Chart,:action => :index %>"><img src="/public/images/rcm/statistics-icon.png" width="50px" height="50px"/><div>Statistics</div></a>
         </div></div>
       </div>
-     
+    
 </div>
 <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
     <div data-role="navbar" class="nav-cust" data-grid="b">
       <ul>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" class="ui-btn-active ui-state-persist">Dashboard</a></li>
-        <li><a href="<%= url_for :action => :dashboard_refresh %>" id="refresh" data-icon="custom">Refresh</a></li>
+        <li><a href="#" id="refresh" class="refresh_icon" onclick="location.reload();" data-icon="custom">Refresh</a></li>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
       </ul>
     </div>
   </div>
+
 </div>

@@ -8,122 +8,33 @@
   </div>
 
   <div data-role="content" >
-      <style>
-      ul.style,li{
-        list-style:none;
-      }
-      ul.style{
-        overflow:hidden;
-        padding-left:1em;
-        padding-right:1em;
-      }
-      ul.style li a{
-        text-decoration:none;
-        color:#000;
-        background:#ffc;
-        display:block;
-        height:7em;
-        width:5em;
-        padding: 9px;
-        -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
-        -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-        box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-        -moz-transition:-moz-transform .15s linear;
-        -o-transition:-o-transform .15s linear;
-        -webkit-transition:-webkit-transform .15s linear;
-      }
-      ul.style li{
-        margin:10px;
-        float:left;
-      }
-      ul.style li h2{
-        font-size:100%;
-        font-weight:bold;
-        //padding-bottom:5px;
-        //text-align:center;
-      }
-      ul.style li p{
-        font-family: arial,sans-serif;
-        font-size:100%;
-      }
-      ul.style li a{
-        -webkit-transform: rotate(-6deg);
-        -o-transform: rotate(-6deg);
-        -moz-transform:rotate(-6deg);
-      }
-      ul.style li:nth-child(even) a{
-        -o-transform:rotate(4deg);
-        -webkit-transform:rotate(4deg);
-        -moz-transform:rotate(4deg);
-        position:relative;
-        top:5px;
-        background:#cfc;
-      }
-      ul.style li:nth-child(3n) a{
-        -o-transform:rotate(-3deg);
-        -webkit-transform:rotate(-3deg);
-        -moz-transform:rotate(-3deg);
-        position:relative;
-        top:-5px;
-        background:#ccf;
-      }
-      ul.style li:nth-child(5n) a{
-        -o-transform:rotate(5deg);
-        -webkit-transform:rotate(5deg);
-        -moz-transform:rotate(5deg);
-        position:relative;
-        top:-10px;
-      }
-      ul.style li a:hover,ul li a:focus{
-        box-shadow:8px 8px 7px rgba(0,0,0,.7);
-        -moz-box-shadow:8px 8px 7px rgba(0,0,0,.7);
-        -webkit-box-shadow: 8px 8px 7px rgba(0,0,0,.7);
-        -webkit-transform: scale(1.25);
-        -moz-transform: scale(1.25);
-        -o-transform: scale(1.25);
-        position:relative;
-        z-index:5;
-      }
-      </style>
-      <ul class="style">
-      <% @Info.each do |info|%> 
-          <li>
-            <a href="#">
-              <h2>Licensed To</h2>
-              <p><%=info.license %></p>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <h2>Available</h2>
-              <p><%=info.available %></p>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <h2>Total Devices</h2>
-              <p><%= info.total%></p>
-            </a>
-          </li>
-        <li>
-            <a href="#">
-              <h2>Issued on</h2>
-              <p><%= info.issued_date %></p>
-            </a>
-          </li>
-        <% end %>
-      </ul>
+    
+     <div class="ui-grid-b">
+       <div class="ui-block-a"><div class="ui-bar " style="height:180px">
+         <a href="#"><div><h2>Licensed <br/>To</h2></div><p><%= @Info[0].license %></p></a>
+        </div></div>
+       
+       <div class="ui-block-b"><div class="ui-bar " style="height:180px">
+       <a href="#"><div><h2>Available<br/>Devices</h2></div><p><%= @Info[0].available %></p></a>
+       </div></div>
+       <div class="ui-block-a"><div class="ui-bar " style="height:180px">
+         <a href="#"><div><h2>Devices<br/>Total</h2></div><p><%= @Info[0].total %></p></a>
+        </div></div>
+       <div class="ui-block-b"><div class="ui-bar " style="height:180px">
+       <a href="#"><div><h2>Issued<br/>on</h2></div><p><%= @Info[0].issued_date %></p></a>
+       </div></div>
+     </div>
+     
 
   </div>
-  <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
+ 
+<div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
     <div data-role="navbar" class="nav-cust" data-grid="b">
       <ul>
-        <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" class="ui-btn-active ui-state-persist">Dashboard</a></li>
-        <li><a href="<%= url_for :action => :info_refresh %>" id="refresh" data-icon="custom">Refresh</a></li>
+        <li><a href="<%= url_for :controller => RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" class="ui-btn-active ui-state-persist">Dashboard</a></li>
+        <li><a href="<%= url_for :controller => Info,:action => :info_refresh %>" id="refresh" class="refresh_icon" data-icon="custom">Refresh</a></li>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
-      
       </ul>
     </div>
   </div>
 </div>
-

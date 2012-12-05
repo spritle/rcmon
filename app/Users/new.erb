@@ -1,5 +1,24 @@
 <div data-role="page" data-theme="a">
+<script type="text/javascript">
+//alert("testts00000000000000000")
+$(document).ready(function(){
+  //alert("testqwqwqwq")
+  var login_val
+  var pwd_val
+ $('input[type=text],input[type=password]').change(function(){
+   login_val=$('.user_login').attr("value");
+   pwd_val=$('.user_pwd').attr("value")
+  //alert("test")
+ });
 
+ $('#create_btn').click(function(){
+   // alert(login_val);
+   // alert(pwd_val);
+   //alert("tessdjkakd")
+   $.post("/app/Users/create",{ user_name : login_val, user_pwd : pwd_val})
+ });
+});
+</script>
   <div data-role="header" data-position="inline">
     <h1>New User </h1>
     <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" data-direction="reverse">
@@ -8,16 +27,17 @@
   </div>
 
   <div data-role="content">
-    <form method="POST" action="<%= url_for :action => :create %>">
+    <form>
           <div data-role="fieldcontain">
-            <label for="users[name]" class="fieldLabel">Login</label>
-            <input type="text" id="users[name]" name="users[name]" />
+            <label for="users[name]" class="fieldLabel"><b>Login</b></label>
+            <input type="text" id="users[name]" class="user_login" name="users[name]" data-theme="c"/>
           </div>
           <div data-role="fieldcontain">
-              <label for="users[password]" class="fieldLabel">Password</label>
-              <input type="password" id="users[password]" name="users[password]" />
+              <label for="users[password]" class="fieldLabel"><b>Password</b></label>
+              <input type="password" id="users[password]" class="user_pwd" name="users[password]" data-theme="c"/>
           </div>
-      <input type="submit" value="Create"/>
+
+     <a href="#" id="create_btn" data-role="button">Create</a>
     </form>
   </div>
   <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">

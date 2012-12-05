@@ -1,6 +1,6 @@
 <div data-role="page" data-theme="a">
   <div data-role="header" data-position="inline" >
-    <h3 style="font-size:13px;">RhoConnect Monitor</h3>
+    <h3 style="font-size:16px;">RhoConnect Monitor</h3>
   
   </div>
 
@@ -8,24 +8,30 @@
      <form method="POST" action="<%= url_for :action => :server_login %>" >
          <div data-role="fieldcontain" >
            <label for="rho_monitor[url]" class="fieldLabel">Url</label>
-           <input type="text" id="rho_monitor[url]" name="rho_monitor[url]" value="http://"/>
+           <input type="text" id="rho_monitor[url]" name="rho_monitor[url]" data-theme="c" value="http://"/>
          </div>
          <div data-role="fieldcontain"  >
             <label for="rho_monitor[login]" class="fieldLabel">Login</label>
-            <input type="text" id="rho_monitor[login]" name="rho_monitor[login]" value="rhoadmin" />
+            <input type="text" id="rho_monitor[login]" name="rho_monitor[login]" value="rhoadmin" data-theme="c" />
          </div>
          <div data-role="fieldcontain" >
              <label for="rho_monitor[password]" class="fieldLabel">Password</label>
-             <input type="text" id="rho_monitor[password]" name="rho_monitor[password]" <%= placeholder("Password") %> />
+             <input type="text" id="rho_monitor[password]" data-theme="c" name="rho_monitor[password]" <%= placeholder("Password") %> />
          </div>
-         <input type="submit" value="Submit" />
+         <input type="submit" value="Submit"/>
        </form>
   </div>
-  <hr />
-	<div style="text-align: center;">
+ <!--  <hr /> -->
+	<!-- <div style="text-align: center;">
 	<img src="/public/images/RhoConnect_Icon_TB.jpg" alt="RhoConnect Logo"> RHOConnect <br />
-	<div>
+	<div> -->
 	<div style="color: #fff;	position: absolute; bottom: 0;right:0;">
-	<a href="" style="color: #fff">Built by Spritle Software</a>
+	Crafted by:<a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #DCDCDC;text-decoration:none;"><i> Spritle software </i></a>
 	</div>
 </div>
+<style type="text/css">
+
+.fieldLabel{
+  font-weight:bold !important;
+}
+</style>

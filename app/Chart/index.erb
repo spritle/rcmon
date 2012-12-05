@@ -68,8 +68,8 @@ $(document).ready(function() {
   <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
        <div data-role="navbar" class="nav-cust" data-grid="b">
          <ul>
-            <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" class="ui-btn-active ui-state-persist">Dashboard</a></li>
-            <li><a href="<%= url_for :action => :chart_refresh %>" id="refresh" data-icon="custom">Refresh</a></li>
+            <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom">Dashboard</a></li>
+            <li><a href="#" id="refresh" onclick="$.post('/app/Chart/chart_refresh');" data-icon="custom">Refresh</a></li>
             <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
          </ul>
        </div>
