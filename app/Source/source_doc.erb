@@ -9,12 +9,14 @@
   </div>
 
   <div data-role="content" >
-      <label class="fieldLabel" style="font-size:18px;">Document  [<%= @params['doc'] %>]</label><br/><br/>
+     
+      <div data-role="fieldcontain">
+      <label class="fieldLabel" style="font-size:18px;">Document  [<%= @params['doc'].gsub(':',': ') %>]</label><br/><br/>
      
       <% if @source_db_doc == {} %>
           Document is empty
         <% end %>
-     
+     </div>
           <% @source_db_doc.each do |data| %>
             <ul data-role="listview" data-inset="true" data-theme="c">
              <li> <label class="fieldLabel"><a><%= data[0] %></a></label></li>
