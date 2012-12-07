@@ -98,3 +98,30 @@ $(document).delegate('#user_delete', 'click', function() {
     }
   });
 });
+  $(document).delegate('#device_delete_btn', 'click', function() {
+  // var data_id=$(this).attr("id");
+  // alert($(this).attr("id"))
+  //alert("test")
+  var name=$(this).attr("title");
+  $('<div>').simpledialog2({
+    mode: 'button',
+    headerText: 'Delete Box',
+    headerClose: true,
+    buttonPrompt: 'Are you want to delete this device?',
+    buttons : {
+      'YES': {
+        click: function () { 
+          $('#buttonoutput').text('Yes');
+          $.post("/app/Device/delete",{ device_name : name})
+        }
+      },
+      'NO': {
+        click: function () { 
+          $('#buttonoutput').text('No');
+        },
+        icon: "delete",
+        theme: "c"
+      }
+    }
+  });
+});

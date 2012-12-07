@@ -1,5 +1,5 @@
 <div data-role="page" data-theme="a">
-  
+
   <div data-role="header" data-position="inline">
     <h1>Device Attributes</h1>
     <a href="<%= url_for( :action => :index ,:query => {:user_name=> @params['user_name']} )%>" class="ui-btn-left" data-icon="back" >
@@ -20,7 +20,7 @@
           <%end%>
         <% end %>
       <% end %>
-      <li>Delete device<span class="ui-li-aside"><a href="<%=url_for(:controller=>:Device,:action => :delete ,:query => {:device_name=>@device_name} )%>"><img src="\public\images\rcm\delete.png" width="20" height="20"/></a></span></li>
+      <li>Delete device<span class="ui-li-aside"><a href="#" title="<%= @device_name %>" id="device_delete_btn"><img src="\public\images\rcm\delete.png" width="20" height="20"/></a></span></li>
       </ul>
       
   </div>
