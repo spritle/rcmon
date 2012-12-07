@@ -25,16 +25,23 @@ class PingController < Rho::RhoController
     end
   
   def ping_form
-    p @params,"-------------------------o-o"
-    @users=Users.find(:all)
-    @@users=[]
-    @users.each do |user|
-      if @params[user] == "on"
-        @@users << user
-      end
-    end
+    p @params['users'],@params['users'].class,"-------------------------o-o"
+    @@users=@params['users'].split(',')
+    # @users=Users.find(:all)
+    # @@users=[]
+    # @users.each do |user|
+
+    #   if @params[user] == "on"
+    #     puts user,"======"
+    #     @@users << user
+    #   end
+    # end
+     # puts @@users,"==================="
+     # @user_list = @@users
+     # puts  @user_list,"=--=-=-=-=-=-=-=-=-=-=-="
   end
   def ping_users
+
     message=@params['rho_monitor']['message']
     vibrate=@params['rho_monitor']['vibrate']
     sound=@params['rho_monitor']['sound']

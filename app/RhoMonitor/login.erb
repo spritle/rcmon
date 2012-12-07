@@ -1,4 +1,23 @@
 <div data-role="page" data-theme="a">
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('#login_btn').click(function(){
+    // $('#demo2').click(function() { 
+        $.blockUI({ css: { 
+            border: 'none', 
+            padding: '10px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        } }); 
+ 
+        setTimeout($.unblockUI, 2000); 
+    // }); 
+    });
+  });
+  </script>
   <div data-role="header" data-position="inline" >
     <h3 style="font-size:16px;">RhoConnect Monitor</h3>
   
@@ -18,7 +37,7 @@
              <label for="rho_monitor[password]" class="fieldLabel">Password</label>
              <input type="text" id="rho_monitor[password]" data-theme="c" name="rho_monitor[password]" <%= placeholder("Password") %> />
          </div>
-         <input type="submit" value="Submit"/>
+         <input type="submit" value="Submit" id="login_btn"/>
        </form>
   </div>
  <!--  <hr /> -->

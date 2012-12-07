@@ -13,7 +13,7 @@ class UsersController < Rho::RhoController
     else  
     list_users =  get_api('users')
     p "-----------------YES"
-    if list_users['status']=="ok"  
+     if list_users['status']=="ok"  
       @users = Rho::JSON.parse(list_users["body"])
       @users.each do |user|
       @users=Users.new({:user=>user})

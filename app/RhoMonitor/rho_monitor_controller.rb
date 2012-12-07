@@ -100,14 +100,14 @@ class RhoMonitorController < Rho::RhoController
   
   def httpget_callback
     puts @params,"-----------------------------"
-    if @params['status']=='ok' and @params['http_error']=='200'
+    if @params['status']=='ok'
       # Alert.show_popup( {
       #         :message => 'Rhoconnect server is running', 
       #         :title => 'Server Status', 
       #         :icon => '',
       #         :buttons => ["Ok"],
       #         :callback => '' } )
-      WebView.execute_js("show_dialog_box('Server Status','Rhoconnect server is running','single');")
+      WebView.execute_js("show_dialog_box('ServerStatus','Rhoconnect server is running','single');")
     else
       # Alert.show_popup( {
       #               :message => 'Rhoconnect server is not running', 
@@ -115,7 +115,7 @@ class RhoMonitorController < Rho::RhoController
       #               :icon => '',
       #               :buttons => ["Ok"],
       #               :callback => '' } )
-      WebView.execute_js("show_dialog_box('Server Status','Rhoconnect server is not running','single');")
+      WebView.execute_js("show_dialog_box('ServerStatus','Rhoconnect server is not running','single');")
     end
   end
   def dashboard_refresh

@@ -9,9 +9,22 @@ class ChartController < Rho::RhoController
     @chart=Chart.find(:all)
     p @chart,"--------------------------,,,,,,"
     if @chart == []
-    @user=Users.find(:all)
-    p @user,"=============userddd"
-       @user.each do |user|
+      puts "=============="
+    @users=Users.find(:all)
+    if @users == []
+       list_users =  get_api('users')
+     p "-----------------YES"
+     if list_users['status']=="ok"  
+      @users = Rho::JSON.parse(list_users["body"])
+      @users.each do |user|
+      @users=Users.new({:user=>user})
+      @users.save
+      end
+      @users=Users.find(:all) 
+    end
+  end
+    p @users,"=============userddd"
+       @users.each do |user|
          @device_count=0
          list_devices =  get_device(user.user)
          @devices = Rho::JSON.parse(list_devices["body"])
