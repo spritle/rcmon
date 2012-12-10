@@ -3,23 +3,26 @@
   $(document).ready(function(){
     $('#login_btn').click(function(){
     // $('#demo2').click(function() { 
-        $.blockUI({ css: { 
-            border: 'none', 
-            padding: '10px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .5, 
-            color: '#fff' 
-        } }); 
+    //     $.blockUI({ css: { 
+    //         border: 'none', 
+    //         padding: '10px', 
+    //         backgroundColor: '#000', 
+    //         '-webkit-border-radius': '10px', 
+    //         '-moz-border-radius': '10px', 
+    //         opacity: .5, 
+    //         color: '#fff' 
+    //     } }); 
  
-        setTimeout($.unblockUI, 2000); 
-    // }); 
+    //     setTimeout($.unblockUI, 2000); 
+    // // }); 
+
+     $.mobile.showPageLoadingMsg();
+  
     });
   });
   </script>
   <div data-role="header" data-position="inline" >
-    <h3 style="font-size:16px;">RhoConnect Monitor</h3>
+    <h3 style="font-size:13.5px;">RhoConnect Monitor</h3>
   
   </div>
 
