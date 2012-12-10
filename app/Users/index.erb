@@ -17,7 +17,7 @@ $.post("/app/Users/user_refresh",function(data){
     </a>
     
   </div>
-
+<div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div>
   <div data-role="content" >
     <div  id="users_list">
       <ul data-role="listview" data-inset="true" data-theme="a" data-divider-theme="d" data-split-theme="d">
@@ -37,6 +37,7 @@ $.post("/app/Users/user_refresh",function(data){
   </div>
   </div>
 <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
+
     <div data-role="navbar" class="nav-cust" data-grid="b">
       <ul>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom">Dashboard</a></li>
@@ -44,6 +45,7 @@ $.post("/app/Users/user_refresh",function(data){
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
       
       </ul>
+
     </div>
   </div>
 </div>
