@@ -6,24 +6,66 @@
     </a>
    
   </div>
- <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div>
+ <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div><br/>
   <div data-role="content" >
-      <div class="ui-grid-a">
-       <div class="ui-block-a" data-theme="b"><div class="ui-bar " style="height:180px">
-         <a href="#"><div><h2>Licensed <br/>To</h2></div><p><%= @Info[0].license %></p></a>
-        </div></div>
-       
-       <div class="ui-block-b"><div class="ui-bar " style="height:180px">
-       <a href="#"><div><h2>Available<br/>Devices</h2></div><p><%= @Info[0].available %></p></a>
-       </div></div>
-       <div class="ui-block-a"><div class="ui-bar " style="height:180px">
-         <a href="#"><div><h2>Devices<br/>Total</h2></div><p><%= @Info[0].total %></p></a>
-        </div></div>
-       <div class="ui-block-b"><div class="ui-bar " style="height:180px">
-       <a href="#"><div><h2>Issued<br/>on</h2></div><p><%= @Info[0].issued_date %></p></a>
-       </div></div>
-      </div>
-
+    <script type="text/javascript">
+     
+      var chart1;
+      var used;
+      used=<%= @Info[0].total %>-<%= @Info[0].available %>;
+      $(document).ready(function () {
+        
+        // Build the chart
+        chart1 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container_info',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Device Usage -Total Devices <%= @Info[0].total %> ',
+                 style: {
+              color: 'gray',
+              fontWeight: 'bold'
+            }
+            },
+          subtitle: {
+            text: "License To <%= @Info[0].license %> <br/> Issued on <%= @Info[0].issued_date %><br/>",
+            style: {
+              color: 'gray',
+              fontWeight: 'bold'
+            }
+          },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y}</b>',
+                percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+                     ['Used Devices',  used],
+                     ['Available Devices', <%= @Info[0].available %>]
+                ]
+            }]
+        });
+    });
+    
+        
+    </script>
+ <div id="container_info" style="height: 80%;width:80%; margin: 0 auto"></div>
+     
   </div>
  
 <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
