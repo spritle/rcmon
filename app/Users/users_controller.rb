@@ -32,6 +32,7 @@ class UsersController < Rho::RhoController
   def user_refresh
     get_user_destroy
     #redirect :action => :index
+    #WebView.execute_js("$.mobile.showPageLoadingMsg();")
     WebView.navigate(url_for :action => :index)
   end
   def create

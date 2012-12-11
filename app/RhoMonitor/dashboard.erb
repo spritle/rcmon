@@ -1,4 +1,5 @@
 <div data-role="page" data-theme="a">
+     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<div data-role="header" data-position="inline" data-theme="a">
 		<h1>Dashboard</h1>
 	</div>
@@ -6,7 +7,7 @@
 	<div data-role="content" style="text-align: center;" >
     <div class="ui-grid-b">
         <div class="ui-block-a"><div class="ui-bar " style="height:100px">
-        <a href="<%= url_for :controller=>:Info ,:action => :index %>" ><img src="\public\images\rcm\license-icon.png" width="50px" height="50px"/><div>License</div></a>
+        <a href="#" id="info_page"><img src="\public\images\rcm\license-icon.png" width="50px" height="50px"/><div>License</div></a>
         </div></div>
         <div class="ui-block-b"><div class="ui-bar " style="height:100px">
         <a href="<%= url_for :controller=>:Users ,:action => :index %>"  ><img src="\public\images\rcm\Users-icon.png"width="50px" height="50px"/><div>Users</div></a>
@@ -32,8 +33,22 @@
         <a href="#" id="reset_db" ><img src="\public\images\rcm\reset-icon.png" width="50px" height="50px"/><div>Reset</div></a>
         </div></div>
         <div class="ui-block-c"><div class="ui-bar " style="height:100px">
-        <a href="<%= url_for :controller => :Chart,:action => :index %>"><img src="/public/images/rcm/statistics-icon.png" width="50px" height="50px"/><div>Statistics</div></a>
+        <a href="#" id="statistic"><img src="/public/images/rcm/statistics-icon.png" width="50px" height="50px"/><div>Statistics</div></a>
         </div></div>
+
+        <script type="text/javascript">
+         $(document).ready(function(){
+           $('#info_page').click(function(){
+            $.mobile.showPageLoadingMsg();
+            window.location.href="/app/Info/index"
+           });
+           $('#statistic').click(function(){
+              $.mobile.showPageLoadingMsg();
+              window.location.href="/app/Chart/index"
+           });
+         });
+ 
+        </script>
       </div>
     
 </div>
@@ -43,7 +58,7 @@
      
       <ul>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" class="ui-btn-active ui-state-persist">Dashboard</a></li>
-        <li><a href="#" id="refresh" class="refresh_icon" onclick="location.reload();" data-icon="custom">Refresh</a></li>
+        <li><a href="#" id="refresh" class="refresh_icon" onclick="$.mobile.showPageLoadingMsg(); location.reload();" data-icon="custom">Refresh</a></li>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
       </ul>
 

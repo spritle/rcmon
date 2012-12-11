@@ -30,6 +30,8 @@ class InfoController < Rho::RhoController
   end
   def info_refresh
     get_info_destroy
-    redirect :action => :index
+    #redirect :action => :index
+    # WebView.execute_js("$.mobile.showPageLoadingMsg();")
+    WebView.execute_js("window.location.href='/app/Info/index';")
   end 
 end

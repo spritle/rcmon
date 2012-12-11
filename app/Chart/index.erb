@@ -1,67 +1,34 @@
 <div data-role="page" data-theme="a">
-<div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div><br/>
-<script type="text/javascript">
-    
-var chart;
-$(document).ready(function() {
-  chart = new Highcharts.Chart({
-    chart: {
-      renderTo: 'container',
-      type: 'bar'
-    },
-    title: {
-      text: 'User/Device Statistics'
-    },
-    subtitle: {
-      text: ''
-    },
-    xAxis: {
-      categories: [<%  @chart.each do |chart| %>
-        "<%=  chart.user_name %>",
-       <% end %>],
-      title: {
-        text: null
+   <script type="text/javascript">
+   
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart_bar);
+      function drawChart_bar() {
+       
+        var data1 = google.visualization.arrayToDataTable([
+          ['Users', 'Devices'],
+          <%  @chart.each do |chart| %>
+          ["<%=  chart.user_name %>",<%= chart.device_count %>],    
+
+          <% end %> 
+        ]);
+
+        var options1 = {
+          title: 'User/Device Statistics', legend:'top',titleTextStyle: {color: 'gray'},fontSize:13,         
+          hAxis: {title: 'Devices Count',  titleTextStyle: {color: 'gray'},fontSize:12}
+        };
+
+        var bar_chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        bar_chart.draw(data1, options1);
       }
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: '',
-        align: 'high'
-      },
-      labels: {
-        overflow: 'justify'
-      }
-    },
-    tooltip: {
-      formatter: function() {
-        return ''+
-          this.series.name +': '+ this.y ;
-      }
-    },
-    plotOptions: {
-      bar: {
-        dataLabels: {
-          enabled: true
-        }
-      }
-    },
-    legend: {
-    
-    },
-    credits: {
-      enabled: false
-    },
-      series: [{
-      name: 'Device count',
-      data: <%= @count %>
-        }]
-  });
-});     
     </script>
+<div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div><br/>
+
 
   <div data-role="content" >
-    <div id="container" style="height: 80%;width:80%; margin: 0 auto"></div>
+    
+  
+    <div id="chart_div" class="charts"></div>
    
   </div>
   
@@ -69,7 +36,7 @@ $(document).ready(function() {
        <div data-role="navbar" class="nav-cust" data-grid="b">
          <ul>
             <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom">Dashboard</a></li>
-            <li><a href="#" id="refresh" onclick="$.post('/app/Chart/chart_refresh');" data-icon="custom">Refresh</a></li>
+            <li><a href="#" id="refresh" onclick="$.mobile.showPageLoadingMsg(); $.post('/app/Chart/chart_refresh');" data-icon="custom">Refresh</a></li>
             <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
          </ul>
        </div>

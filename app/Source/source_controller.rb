@@ -38,7 +38,8 @@ class SourceController < Rho::RhoController
   def source_refresh
     p "-----------------source refresh----------"
     get_source_destroy
-    redirect :action => :source_list
+    #redirect :action => :source_list
+    WebView.navigate('/app/Source/source_list')
   end
   def source_param_refresh
     redirect (url_for :action => :source_param,:query => {:source_name =>@params['source_name'],:user_name =>@params['user_name'] })

@@ -54,7 +54,8 @@ class PingController < Rho::RhoController
   end
   def ping_user_refresh
     get_user_destroy
-    redirect :action => :index
+    # redirect :action => :index
+    WebView.navigate("/app/Ping/index")
   end
   def ping_form_refresh
     redirect :action => :index 

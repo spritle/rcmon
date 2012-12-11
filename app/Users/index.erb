@@ -1,15 +1,5 @@
 <div data-role="page" data-theme="a">
-  <script type="text/javascript">
-$('.user_refresh').live("click",function(){
-//alert("test")
-$.post("/app/Users/user_refresh",function(data){
-  // alert(data)
-  // alert($( data ).find( '#users_list' ))
-  // var content=$( data ).find( '#users_list' );
-  // $('#users_list').html(content);
-});
-});
-</script>
+
   <div data-role="header" data-position="inline">
     <h1>Users</h1>
     <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" data-direction="reverse">
@@ -41,7 +31,7 @@ $.post("/app/Users/user_refresh",function(data){
     <div data-role="navbar" class="nav-cust" data-grid="b">
       <ul>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom">Dashboard</a></li>
-       <li><a href="#" id="refresh" class="user_refresh" data-icon="custom">Refresh</a></li>
+       <li><a href="#" id="refresh" class="user_refresh" data-icon="custom" onClick="$.mobile.showPageLoadingMsg(); $.post('/app/Users/user_refresh');">Refresh</a></li>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
       
       </ul>

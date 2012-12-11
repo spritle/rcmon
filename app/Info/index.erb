@@ -1,4 +1,40 @@
+
 <div data-role="page" data-theme="a">
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script>        
+    <script type="text/javascript">
+
+      var used;
+      used=<%= @Info[0].total %>-<%= @Info[0].available %>;
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+         data.addColumn('string', 'Topping');
+         data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Used Devices',  used],
+          ['Available Devices', <%= @Info[0].available %>]
+        ]);
+
+        // Set chart options
+        var options = {'title':'Device Usage -Total Devices <%= @Info[0].total %>,   License To <%= @Info[0].license %>, Issued-on-<%= @Info[0].issued_date %>',
+                        legend:'top',titleTextStyle: {color: 'gray'},fontSize:13,axisTitlesPosition: 'in',};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('container_info'));
+        chart.draw(data, options);
+      }
+    </script>
+ 
   <div data-role="header" data-position="inline" data-theme="a">
     <h1>Informations</h1>
     <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" data-direction="reverse">
@@ -8,63 +44,9 @@
   </div>
  <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div><br/>
   <div data-role="content" >
-    <script type="text/javascript">
-     
-      var chart1;
-      var used;
-      used=<%= @Info[0].total %>-<%= @Info[0].available %>;
-      $(document).ready(function () {
-        
-        // Build the chart
-        chart1 = new Highcharts.Chart({
-            chart: {
-                renderTo: 'container_info',
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: 'Device Usage -Total Devices <%= @Info[0].total %> ',
-                 style: {
-              color: 'gray',
-              fontWeight: 'bold'
-            }
-            },
-          subtitle: {
-            text: "License To <%= @Info[0].license %> <br/> Issued on <%= @Info[0].issued_date %><br/>",
-            style: {
-              color: 'gray',
-              fontWeight: 'bold'
-            }
-          },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.y}</b>',
-                percentageDecimals: 1
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: 'Browser share',
-                data: [
-                     ['Used Devices',  used],
-                     ['Available Devices', <%= @Info[0].available %>]
-                ]
-            }]
-        });
-    });
-    
-        
-    </script>
- <div id="container_info" style="height: 80%;width:80%; margin: 0 auto"></div>
+ 
+    <!--Div that will hold the pie chart-->
+   <div id="container_info" class="charts"></div>
      
   </div>
  
@@ -72,7 +54,7 @@
     <div data-role="navbar" class="nav-cust" data-grid="b">
       <ul>
         <li><a href="<%= url_for :controller => RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom">Dashboard</a></li>
-        <li><a href="<%= url_for :controller => Info,:action => :info_refresh %>" id="refresh" class="refresh_icon" data-icon="custom">Refresh</a></li>
+        <li><a href="#" id="refresh" class="refresh_icon" data-icon="custom" onclick="$.mobile.showPageLoadingMsg(); $.post('/app/Info/info_refresh');">Refresh</a></li>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
       </ul>
     </div>
