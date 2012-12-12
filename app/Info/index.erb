@@ -27,7 +27,7 @@
 
         // Set chart options
         var options = {'title':'Device Usage -Total Devices <%= @Info[0].total %>,   License To <%= @Info[0].license %>, Issued-on-<%= @Info[0].issued_date %>',
-                        legend:'top',titleTextStyle: {color: 'gray'},fontSize:13,axisTitlesPosition: 'in',};
+                        legend:'top',titleTextStyle: {color: 'gray'},fontSize:13,axisTitlesPosition: 'in',pieSliceText : "value"};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('container_info'));
