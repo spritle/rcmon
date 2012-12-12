@@ -27,9 +27,11 @@ class PingController < Rho::RhoController
   def ping_form
     p @params,"-------------------------o-o"
     @@users=[]
+    if @params != {}
     @params['ping'].each do |key,value|
        @@users << value
     end
+   end
     @users=@@users
   end
   def ping_users

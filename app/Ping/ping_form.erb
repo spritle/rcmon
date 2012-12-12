@@ -9,10 +9,12 @@
  <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div>
   <div data-role="content" >
     <form>
+      <% if @users != [] %>
           <div data-role="fieldcontain">
            <label for="rho_monitor[user]" class="fieldLabel"><b>Users  -</b></label>
            <%= @users %>
          </div>
+        <% end %>
          <div data-role="fieldcontain">
            <label for="rho_monitor[message]" class="fieldLabel"><b>Message</b></label>
            <input type="text" id="rho_monitor[message]" class="mgs" name="rho_monitor[message]" value="Hello World" />
