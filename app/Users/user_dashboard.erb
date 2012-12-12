@@ -1,4 +1,5 @@
 <div data-role="page" data-theme="a">
+
   <div data-role="header" data-position="inline">
    <h1>User Dashboard </h1>
    <a href="<%= url_for :action => :index,:query => {:user_name=>@user} %>" class="ui-btn-left" data-icon="back" data-direction="reverse">
@@ -23,7 +24,7 @@
     <div data-role="navbar" class="nav-cust" data-grid="b">
       <ul>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom" >Dashboard</a></li>
-        <li><a href="<%= url_for :action => :user_dashboard_refresh , :query => {:user_name => @user }%>" id="refresh" data-icon="custom">Refresh</a></li>
+        <li><a href="#" id="refresh" class="user_dashboard" data-user="<%= @user %>" data-icon="custom">Refresh</a></li>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
       
       </ul>

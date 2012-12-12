@@ -50,10 +50,12 @@ class DeviceController < Rho::RhoController
   end
   def device_refresh
     get_devices_destroy
-    redirect  :action => :index, :query =>{:user_name=>@@user_name}
+    #redirect  :action => :index, :query =>{:user_name=>@@user_name}
+    WebView.navigate(url_for :action => :index, :query =>{:user_name=>@@user_name} )
   end
   def device_params_refresh 
-    redirect  :action => :device_param, :query => {:device_name =>  @params['device_name'],:user_name=> @params['user_name']}
+    #redirect  :action => :device_param, :query => {:device_name =>  @params['device_name'],:user_name=> @params['user_name']}
+     WebView.navigate(url_for :action => :device_param, :query => {:device_name =>  @params['device_name'],:user_name=> @params['user_name']} )
   end
   def new_refresh
     redirect  :action => :new, :query =>{:user_name=>@@user_name}

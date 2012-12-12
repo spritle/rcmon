@@ -81,7 +81,9 @@ class UsersController < Rho::RhoController
   end
   def user_dashboard_refresh
     puts @params,"================================="
-    redirect :action => :user_dashboard , :query => {:user_name =>@params['user_name']}
+   #redirect :action => :user_dashboard , :query => {:user_name =>@params['user_name']}
+   WebView.navigate(url_for :action => :user_dashboard , :query => {:user_name =>@params['user_name']})
+
   end
   def new_refresh
     redirect :action => :new

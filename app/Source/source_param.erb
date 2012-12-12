@@ -36,7 +36,7 @@
     <div data-role="navbar" class="nav-cust" data-grid="b">
       <ul>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :dashboard %>" id="dashboard" data-icon="custom">Dashboard</a></li>
-        <li><a href="<%= url_for :action => :source_param_refresh ,:query => {:source_name =>@params['source_name'],:user_name =>@params['user_name'] } %>" id="refresh" data-icon="custom">Refresh</a></li>
+        <li><a href="#" id="refresh" data-source="<%= @params['source_name'] %>" class="source_param_refresh" data-user="<%= @params['user_name'] %>" data-icon="custom">Refresh</a></li>
         <li><a href="<%= url_for :controller =>RhoMonitor ,:action => :logout %>" id="logout" data-icon="custom">Logout</a></li>
       
       </ul>
