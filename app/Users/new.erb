@@ -1,21 +1,16 @@
 <div data-role="page" data-theme="a">
 <script type="text/javascript">
-//alert("testts00000000000000000")
 $(document).ready(function(){
-  //alert("testqwqwqwq")
   var login_val
   var pwd_val
  $('input[type=text],input[type=password]').change(function(){
    login_val=$('.user_login').attr("value");
    pwd_val=$('.user_pwd').attr("value")
-  //alert("test")
- });
+  });
 
  $('#create_btn').click(function(){
-   // alert(login_val);
-   // alert(pwd_val);
-   //alert("tessdjkakd")
-   $.post("/app/Users/create",{ user_name : login_val, user_pwd : pwd_val})
+   $.mobile.showPageLoadingMsg();
+     $.post("/app/Users/create",{ user_name : login_val, user_pwd : pwd_val})
  });
 });
 </script>

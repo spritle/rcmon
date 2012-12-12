@@ -1,5 +1,5 @@
 <div data-role="page" data-theme="a">
-  
+   <script type="text/javascript" src="/public/js/ping_form.js"></script>
 	<div data-role="header" data-position="inline">
     <h1>Users Ping</h1>
     <a href="<%= url_for :action => :index %>" class="ui-btn-left" data-icon="back" data-direction="reverse">
@@ -8,24 +8,24 @@
 	</div>
  <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div>
   <div data-role="content" >
-    <form method="POST" action="<%= url_for :action => :ping_users %>">
+    <form>
           <div data-role="fieldcontain">
-           <label for="rho_monitor[user]" class="fieldLabel">Users</label>
-           <input type="text" id="rho_monitor[user]" name="rho_monitor[user]" value="<%= @params['users'] %>" />
+           <label for="rho_monitor[user]" class="fieldLabel"><b>Users  -</b></label>
+           <%= @users %>
          </div>
          <div data-role="fieldcontain">
-           <label for="rho_monitor[message]" class="fieldLabel">Message</label>
-           <input type="text" id="rho_monitor[message]" name="rho_monitor[message]" value="Hello World" />
+           <label for="rho_monitor[message]" class="fieldLabel"><b>Message</b></label>
+           <input type="text" id="rho_monitor[message]" class="mgs" name="rho_monitor[message]" value="Hello World" />
          </div>
          <div data-role="fieldcontain">
-           <label for="rho_monitor[vibrate]" class="fieldLabel">Vibrate</label>
-           <input type="text" id="rho_monitor[vibrate]" name="rho_monitor[vibrate]" value="2000" />
+           <label for="rho_monitor[vibrate]" class="fieldLabel"><b>Vibrate</b></label>
+           <input type="text" id="rho_monitor[vibrate]" class="vibrate" name="rho_monitor[vibrate]" value="2000" />
          </div>
          <div data-role="fieldcontain">
-           <label for="rho_monitor[sound]" class="fieldLabel">Sound</label>
-           <input type="text" id="rho_monitor[sound]" name="rho_monitor[sound]" value="hello.mp3" />
+           <label for="rho_monitor[sound]" class="fieldLabel"><b>Sound</b></label>
+           <input type="text" id="rho_monitor[sound]" class="sound" name="rho_monitor[sound]" value="hello.mp3" />
          </div>
-         <input type="submit" value="Ping"/>
+         <a href="#" id="user_ping" data-role="button">Ping</a>
        </form>
   </div>
   <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">

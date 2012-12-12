@@ -62,6 +62,7 @@
       'OK': {
         click: function () { 
           $('#buttonoutput').text('Yes');
+          $("input[type='text']").val("");
           if(callback_url){
             window.location.href = callback_url;
           }
@@ -70,6 +71,8 @@
     }
   });
  }
+
+ 
 $(document).delegate('#user_delete', 'click', function() {
   // var data_id=$(this).attr("id");
   // alert($(this).attr("id"))
@@ -84,7 +87,7 @@ $(document).delegate('#user_delete', 'click', function() {
       'YES': {
         click: function () { 
           $('#buttonoutput').text('Yes');
-          
+          $.mobile.showPageLoadingMsg();
           $.post("/app/Users/delete_popup",{ user_name : user,button_title : "Yes"});
         }
       },

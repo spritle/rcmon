@@ -1,18 +1,5 @@
 <div data-role="page" data-theme="a">
-<script type="text/javascript">
-$(document).ready(function(){
-var user_list=[];
-$('.custom').change(function(){
- var checkbox_id=$(this).attr("id");
- var user_name=$('#'+checkbox_id).attr("name");
- user_list.push(user_name);
-});
-$('#ping_btn').click(function(){
-  window.location.href='/app/Ping/ping_form?users='+user_list;
- });
-});
-</script>
-	<div data-role="header" data-position="inline">
+ 	<div data-role="header" data-position="inline">
     <h1>Users Ping</h1>
      <a href="<%= Rho::RhoConfig.dashboard_path %>" class="ui-btn-left" data-icon="back" data-direction="reverse">
       Back
@@ -21,20 +8,20 @@ $('#ping_btn').click(function(){
 	</div>
  <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div>
   <div data-role="content">
-       <form method="POST" action="">
+       <form method="POST" action="<%= url_for :action => :ping_form %>">
       <div  data-role="fieldcontain">
         <b>Choose users to ping:</b>
         <fieldset data-role="controlgroup">
           <legend></legend>
           <%i=1%>
             <% @users.each do |user| %>
-                <input type="checkbox" name="<%=user.user%>" id="checkbox-<%=i%>" class="custom" />
-                  <label for="checkbox-<%=i%>"><%= user.user %></label>
+                <input type="checkbox" name="ping[checkbox-<%=i%>]" id="ping[checkbox-<%=i%>]" class="custom" value="<%= user.user %>"/>
+                  <label for="ping[checkbox-<%=i%>]"><%= user.user %></label>
                   <%i+=1%>
             <% end %>
           </fieldset>
        </div>
-      <a herf="#" data-role="button" id="ping_btn">Ping</a>
+      <input type="submit" value="Ping">
        </form>
   </div>
   <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">

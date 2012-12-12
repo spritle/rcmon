@@ -41,20 +41,14 @@ class UsersController < Rho::RhoController
     response_body=response['body'].gsub("'","")
     puts response_body,"------sasa------------"
     get_user_destroy
+    WebView.execute_js("$.mobile.hidePageLoadingMsg();")
     if response['status']=="ok" 
-      puts "-----------------"
-      #Alert.show_status("Notification", response['body'], 'OK')
       call_back_url='/app/Users/index'
-      WebView.execute_js("show_dialog_box('Notification','#{response_body}','single','#{call_back_url}');")
-      #render  :action => :wait
+      WebView.execute_js("show_dialog_box('Notification','#{response_body}','single','');")
     elsif response['status']=="error"
-      #Alert.show_status("Error", response['body'], 'OK')
-      call_back_url='/app/Users/new'
+     call_back_url='/app/Users/new'
      WebView.execute_js("show_dialog_box('Notification','#{response_body}','single','');")
-      #render  :action => :wait
     end
-    
-    
   end
   
   def delete
