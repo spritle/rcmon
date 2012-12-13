@@ -13,14 +13,18 @@
           seriesDefaults: {
             // Make this a pie chart.
             renderer: jQuery.jqplot.PieRenderer, 
+
             rendererOptions: {
               // Put data labels on the pie slices.
               // By default, labels show the percentage of the slice.
-              showDataLabels: true
+              showDataLabels: true,dataLabels: 'value'
             }
-          }
+          },grid: { borderColor: '#424242'} ,legend: {
+        show: true,location: 's'}
+
         }
       );
+
     });
      
     </script>
@@ -34,9 +38,10 @@
   </div>
  <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div><br/>
   <div data-role="content" >
- 
+   <div style="text-align:center;"><b>Device Usage -Total Devices <%= @Info[0].total %><br/>
+   License To <%= @Info[0].license %><br/>Issued-on-<%= @Info[0].issued_date %></b></div>
     <!--Div that will hold the pie chart-->
-   <div id="container_info" class="charts" style="height:30%;background-color:none !important;"></div>
+   <div id="container_info" class="charts" style="height:30%;"></div>
      
   </div>
  

@@ -16,16 +16,22 @@ $(document).ready(function(){
             pointLabels: { show: true, location: 'e', edgeTolerance: -15 },
            
             shadowAngle: 135,
-            
+             
             rendererOptions: {
-                barDirection: 'horizontal'
+              barWidth:25,
+              barDirection: 'horizontal'
             }
-        }, 
+
+        }, axesDefaults: {
+        show: false},
         axes: {
+          xaxis:{
+          label:'Device Count'
+        },
             yaxis: {
                 renderer: $.jqplot.CategoryAxisRenderer
             }
-        }
+        },grid:{} ,series:[{color:"#0BB5FF"}],title:{text:"User/Device Statistics",fontSize : 20,color:"#fff"}
     });
 });
 </script>
@@ -34,7 +40,7 @@ $(document).ready(function(){
 
   <div data-role="content" >
     
-  
+  <!-- #525C65 -->
     <div id="chart_div" class="charts"></div>
    
   </div>
