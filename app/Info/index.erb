@@ -1,38 +1,28 @@
 
 <div data-role="page" data-theme="a">
-   <script type="text/javascript" src="https://www.google.com/jsapi"></script>        
     <script type="text/javascript">
 
-      var used;
+      $(document).ready(function(){
+         var used;
       used=<%= @Info[0].total %>-<%= @Info[0].available %>;
-      // Load the Visualization API and the piechart package.
-      google.load('visualization', '1.0', {'packages':['corechart']});
-
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.setOnLoadCallback(drawChart);
-
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-        
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-         data.addColumn('string', 'Topping');
-         data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Used Devices',  used],
-          ['Available Devices', <%= @Info[0].available %>]
-        ]);
-
-        // Set chart options
-        var options = {'title':'Device Usage -Total Devices <%= @Info[0].total %>,   License To <%= @Info[0].license %>, Issued-on-<%= @Info[0].issued_date %>',
-                        legend:'top',titleTextStyle: {color: 'gray'},fontSize:13,axisTitlesPosition: 'in',pieSliceText : "value",slices : [{color: '#006B54'}, {color: '#3B6AA0'}]}; 
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('container_info'));
-        chart.draw(data, options);
-      }
+      var data = [
+        ['Used Devices',  used],['Available Devices', <%= @Info[0].available %>]
+      ];
+      jQuery.jqplot ('container_info', [data], 
+        { 
+          seriesDefaults: {
+            // Make this a pie chart.
+            renderer: jQuery.jqplot.PieRenderer, 
+            rendererOptions: {
+              // Put data labels on the pie slices.
+              // By default, labels show the percentage of the slice.
+              showDataLabels: true
+            }
+          }
+        }
+      );
+    });
+     
     </script>
  
   <div data-role="header" data-position="inline" data-theme="a">
@@ -46,7 +36,7 @@
   <div data-role="content" >
  
     <!--Div that will hold the pie chart-->
-   <div id="container_info" class="charts"></div>
+   <div id="container_info" class="charts" style="height:30%;background-color:none !important;"></div>
      
   </div>
  

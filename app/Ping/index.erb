@@ -8,6 +8,7 @@
 	</div>
  <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div>
   <div data-role="content">
+    <% if @users.size != 0 %>
        <form method="POST" action="<%= url_for :action => :ping_form %>">
       <div  data-role="fieldcontain">
         <b>Choose users to ping:</b>
@@ -23,6 +24,7 @@
        </div>
       <input type="submit" value="Ping">
        </form>
+       <% end %>
   </div>
   <div data-id="tabbar" data-role="footer" data-position="fixed" class="nav-cust">
        <div data-role="navbar" class="nav-cust" data-grid="b">

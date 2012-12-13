@@ -7,6 +7,7 @@
   //  $.post("/app/RhoMonitor/reset");
   // });
  $(document).delegate('#reset_db', 'click', function() {
+  $.mobile.showPageLoadingMsg();
   // NOTE: The selector can be whatever you like, so long as it is an HTML element.
   //       If you prefer, it can be a member of the current page, or an anonymous div
   //       like shown.
@@ -24,6 +25,7 @@
       },
       'NO': {
         click: function () { 
+          $.mobile.hidePageLoadingMsg();
           $('#buttonoutput').text('No');
         },
         icon: "delete",
@@ -34,9 +36,11 @@
 });
 
  $('#adapter').live("click",function(){
+  $.mobile.showPageLoadingMsg();
    $.post("/app/RhoMonitor/get_adapter");
  });
  $('#ping_status').live("click",function(){
+  $.mobile.showPageLoadingMsg();
    $.post("/app/RhoMonitor/ping_status");
  });
  function show_dialog_box(head_text,body,btn_type,callback_url){

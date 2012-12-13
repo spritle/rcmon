@@ -18,9 +18,7 @@ class PingController < Rho::RhoController
            @users.save
            end
            @users=Users.find(:all) 
-         else 
-            render  :controller=>:RhoMonitor, :action => :dashboard
-         end
+          end
         end
     end
   

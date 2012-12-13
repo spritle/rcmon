@@ -12,7 +12,7 @@ class UsersController < Rho::RhoController
       @users=Users.find(:all)
     else  
     list_users =  get_api('users')
-    p "-----------------YES"
+    p list_users,"-----------------YES"
      if list_users['status']=="ok"  
       @users = Rho::JSON.parse(list_users["body"])
       @users.each do |user|
@@ -20,8 +20,6 @@ class UsersController < Rho::RhoController
       @users.save
       end
       @users=Users.find(:all) 
-    else 
-       render  :controller=>:RhoMonitor, :action => :dashboard
     end
    end
    
@@ -44,7 +42,7 @@ class UsersController < Rho::RhoController
     WebView.execute_js("$.mobile.hidePageLoadingMsg();")
     if response['status']=="ok" 
       call_back_url='/app/Users/index'
-      WebView.execute_js("show_dialog_box('Notification','#{response_body}','single','');")
+      WebView.execute_js("show_dialog_box('Notification','#{response_body}','single','#{call_back_url}');")
     elsif response['status']=="error"
      call_back_url='/app/Users/new'
      WebView.execute_js("show_dialog_box('Notification','#{response_body}','single','');")

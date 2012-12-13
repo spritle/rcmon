@@ -13,12 +13,15 @@ class SourceController < Rho::RhoController
         p @sources,"====================NO API=========users"
     else
       list_sources=get_source("user")
-      @sources=Rho::JSON.parse(list_sources["body"])
-        p @sources,"==============="
-      @sources.each do |source|
-      @sources=Source.new({:source=>source})
-      p "==========API Calling============="
-      @sources.save
+      puts list_sources,"======="
+      if list_sources["status"] == "ok"
+        @sources=Rho::JSON.parse(list_sources["body"])
+          p @sources,"==============="
+        @sources.each do |source|
+        @sources=Source.new({:source=>source})
+        p "==========API Calling============="
+        @sources.save
+        end
       end
       @sources=Source.find(:all)
     end
