@@ -1,47 +1,26 @@
 <div data-role="page" data-theme="a">
-
+<script src="/public/js/login.js" type="text/javascript"></script>
   <div data-role="header" data-position="inline" >
     <h3 style="font-size:13.5px;">RhoConnect Monitor</h3>
   
   </div>
 
   <div data-role="content">
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#login_btn').live('click',function(){
-        // $('#demo2').click(function() { 
-        //     $.blockUI({ css: { 
-        //         border: 'none', 
-        //         padding: '10px', 
-        //         backgroundColor: '#000', 
-        //         '-webkit-border-radius': '10px', 
-        //         '-moz-border-radius': '10px', 
-        //         opacity: .5, 
-        //         color: '#fff' 
-        //     } }); 
-     
-        //     setTimeout($.unblockUI, 2000); 
-        // // }); 
-
-         $.mobile.showPageLoadingMsg();
-      
-        });
-      });
-  </script>
-     <form method="POST" action="<%= url_for :action => :server_login %>" >
+   
+       <form>
          <div data-role="fieldcontain" >
            <label for="rho_monitor[url]" class="fieldLabel">Url</label>
-           <input type="text" id="rho_monitor[url]" name="rho_monitor[url]" data-theme="c" value="http://"/>
+           <input type="text" id="rho_monitor[url]" class="server_url" name="rho_monitor[url]" data-theme="c" value="http://"/>
          </div>
          <div data-role="fieldcontain"  >
             <label for="rho_monitor[login]" class="fieldLabel">Login</label>
-            <input type="text" id="rho_monitor[login]" name="rho_monitor[login]" value="rhoadmin" data-theme="c" />
+            <input type="text" id="rho_monitor[login]" class="server_login" name="rho_monitor[login]" value="rhoadmin" data-theme="c" />
          </div>
          <div data-role="fieldcontain" >
              <label for="rho_monitor[password]" class="fieldLabel">Password</label>
-             <input type="text" id="rho_monitor[password]" data-theme="c" name="rho_monitor[password]" <%= placeholder("Password") %> />
+             <input type="text" id="rho_monitor[password]" class="server_pwd" data-theme="c" name="rho_monitor[password]" <%= placeholder("Password") %> />
          </div>
-         <input type="submit" value="Submit" id="login_btn"/>
+         <a href="#" id="login_btn" data-role="button">Login</a>
        </form>
        <style type="text/css">
 

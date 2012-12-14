@@ -15,12 +15,12 @@ class RhoMonitorController < Rho::RhoController
   end
   
   def server_login
-    puts "started...................."
-    server =@params['rho_monitor']['url']
-    login = @params['rho_monitor']['login']
-    password = @params['rho_monitor']['password']
+    puts @params,"started...................."
+    server =@params['url']
+    login = @params['login']
+    password = @params['password']
     login_response= get_cookie(server,login,password)
-    #puts login_response,"-----0000000000000----------------"
+    puts login_response,"-----0000000000000----------------"
     # @api_token =Rho::AsyncHttp.post(:url => server + "/rc/v1/system/login",
     #       :body => {:login => login, :password => password}.to_json,
     #       :headers => {"Content-Type" => "application/json"})
@@ -31,10 +31,14 @@ class RhoMonitorController < Rho::RhoController
     response= get_token(Rho::RhoConfig.server,Rho::RhoConfig.cookie)
     #puts response,"--------------token-------------------"
     Rho::RhoConfig.token = login_response["body"]
+    WebView.execute_js("$.mobile.hidePageLoadingMsg();")
+    # WebView.execute_js("$('.server_url').val('http://');")
     if login_response['status']=="ok"
-      render  :action => :dashboard 
+      WebView.navigate(url_for :action => :dashboard )
     else 
-      render  :action => :login
+      # render  :action => :login
+      WebView.execute_js("$('.server_url').val('http://');")
+      WebView.execute_js("show_dialog_box('Notification','Error Status...Please Try Again','single');")
     end
   end
   
