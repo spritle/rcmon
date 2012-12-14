@@ -36,7 +36,7 @@
     </a>
    
   </div>
- <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div><br/>
+ <%= render :partial => "Shared/company_name"%><br/>
   <div data-role="content" >
    <div style="text-align:center;"><b>Device Usage -Total Devices <%= @Info[0].total %><br/>
    License To <%= @Info[0].license %><br/>Issued-on-<%= @Info[0].issued_date %></b></div>
