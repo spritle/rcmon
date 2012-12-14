@@ -18,6 +18,8 @@ $(document).ready(function(){
             shadowAngle: 135,
              
             rendererOptions: {
+              showDataLabels: true,
+              dataLabels: 'value',
               barWidth:25,
               barDirection: 'horizontal'
             }
@@ -29,19 +31,22 @@ $(document).ready(function(){
           label:'Device Count'
         },
             yaxis: {
-                renderer: $.jqplot.CategoryAxisRenderer
+                renderer: $.jqplot.CategoryAxisRenderer,
+                tickOptions:{
+                 showGridline: false
+                 }
             }
-        },grid:{} ,series:[{color:"#0BB5FF"}],title:{text:"User/Device Statistics",fontSize : 20,color:"#fff"}
+        },grid:{} ,series:[{color:"#607B8B"}],title:{text:"User/Device Statistics",fontSize : 20,color:"#fff"}
     });
 });
-</script>
+</script> 
 <div class="company_name"> <span>Crafted by:</span><i><a href="http://www.spritle.com/?ref=rhoconnect_monitor" target="_blank" style="color: #7CC4E7;text-decoration:none;"> Spritle software</a> </i></div><br/>
 
 
   <div data-role="content" >
     
   <!-- #525C65 -->
-    <div id="chart_div" class="charts"></div>
+    <div id="chart_div" class="charts" style="color:#7CC4E7;font-size:20px;"></div>
    
   </div>
   

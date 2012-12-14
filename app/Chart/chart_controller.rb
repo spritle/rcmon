@@ -47,6 +47,7 @@ class ChartController < Rho::RhoController
  def chart_refresh
    p "-------------------------------"
    get_chart_destroy
+   get_user_destroy
    # WebView.navigate("/app/Chart/index")
     #WebView.execute_js("$.mobile.showPageLoadingMsg();")
     WebView.execute_js("window.location.href='/app/Chart/index';")
