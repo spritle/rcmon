@@ -73,7 +73,9 @@ class RhoMonitorController < Rho::RhoController
       response = get_api('rest')
        puts response,"response['body']----------------------"
       if response['status']=="ok" 
-       
+        get_user_destroy
+        get_chart_destroy
+        get_info_destroy
        # Alert.show_status("Notification", response['body'], 'OK')
        WebView.execute_js("show_dialog_box('Notification','DB is Reseted','single');")
      else
