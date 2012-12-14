@@ -77,7 +77,7 @@ class RhoMonitorController < Rho::RhoController
         get_chart_destroy
         get_info_destroy
        # Alert.show_status("Notification", response['body'], 'OK')
-       WebView.execute_js("show_dialog_box('Notification','DB is Reseted','single');")
+       WebView.execute_js("show_dialog_box('Notification','DB is Reset','single');")
      else
       WebView.execute_js("show_dialog_box('Notification','Erorr Status','single');")
      end
