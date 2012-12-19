@@ -68,6 +68,7 @@
           $('#buttonoutput').text('Yes');
           // $("input[type='text']").val("");
           if(callback_url){
+            $.mobile.showPageLoadingMsg();
             window.location.href = callback_url;
           }
         }
