@@ -7,4 +7,6 @@ class Chart
   # enable :sync
 
   #add model specifc code here
+   property :user_name, :string 
+   property :device_count, :integer 
 end

@@ -66,7 +66,7 @@
       'OK': {
         click: function () { 
           $('#buttonoutput').text('Yes');
-          $("input[type='text']").val("");
+          // $("input[type='text']").val("");
           if(callback_url){
             window.location.href = callback_url;
           }
