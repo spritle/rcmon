@@ -1,6 +1,6 @@
 ---
 sdkversion: 3.5.2
-name: rcmon
+name: RhoConnect Monitor
 version: 1.0
 vendor: spritle
 bbver: 4.6
