@@ -14,7 +14,7 @@
   $('<div>').simpledialog2({
     mode: 'button',
     headerText: 'DB Reset',
-    headerClose: true,
+    
     buttonPrompt: 'Are you sure want to reset database?',
     buttons : {
       'YES': {
@@ -86,7 +86,7 @@ $(document).delegate('#user_delete', 'click', function() {
   $('<div>').simpledialog2({
     mode: 'button',
     headerText: 'Delete Box',
-    headerClose: true,
+    
     buttonPrompt: 'Are you want to delete this user?',
     buttons : {
       'YES': {
@@ -114,7 +114,7 @@ $(document).delegate('#user_delete', 'click', function() {
   $('<div>').simpledialog2({
     mode: 'button',
     headerText: 'Delete Box',
-    headerClose: true,
+    
     buttonPrompt: 'Are you want to delete this device?',
     buttons : {
       'YES': {
