@@ -1,25 +1,20 @@
-#sdk: "C:/RhoStudio/ruby/lib/ruby/gems/1.8/gems/rhodes-3.3.2"
-sdkversion: 3.3.2
+---
+sdkversion: 3.5.2
 name: rcmon
 version: 1.0
-vendor: rhomobile
-build: debug
+vendor: spritle
 bbver: 4.6
 applog: rholog.txt
 iphone:
   configuration: Release
-  sdk: iphonesimulator5.0
-  provisionprofile: 
-  codesignidentity: 
-  entitlements: 
-  BundleIdentifier: com.rhomobile.rcmon
+  sdk: iphonesimulator6.0
+  codesignidentity: ! 'iPhone Developer: Balaji D Loganathan (TB3F5AV4X6)'
+  entitlements: ''
   BundleURLScheme: rcmon
-wp:
-  productid: dc05ec50-8ab0-012f-d4ca-70f1a1bddd12
-symbian:
-  uid: 3864495437
+  BundleIdentifier: com.spritle.rhoconnectmon
 android:
   version: 2.1
   android_title: 0
 extensions:
-  - json
+- json
+sdk: /Users/balajidl/.rvm/gems/ruby-1.9.3-p327/gems/rhodes-3.5.1.12
