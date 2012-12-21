@@ -38,8 +38,8 @@ class RhoMonitorController < Rho::RhoController
     else 
       # render  :action => :login
       WebView.execute_js("$.mobile.hidePageLoadingMsg();")
-      WebView.execute_js("$('.server_url').val('http://');")
-      WebView.execute_js("$('.server_login').val('rhoadmin');")
+      # WebView.execute_js("$('.server_url').val('http://');")
+      # WebView.execute_js("$('.server_login').val('rhoadmin');")
       WebView.execute_js("show_dialog_box('Notification','Error Status...Please Try Again','single');")
     end
   end
