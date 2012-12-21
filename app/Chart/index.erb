@@ -25,10 +25,15 @@ $(document).ready(function(){
             }
 
         }, axesDefaults: {
-        show: false},
+        show: false,
+         },
         axes: {
           xaxis:{
-          label:'Devices Count'
+          label:'Devices Count',
+           tickInterval: 1,
+           tickOptions: { 
+            formatString: '%d' 
+        }
         },
             yaxis: {
                 renderer: $.jqplot.CategoryAxisRenderer,
@@ -36,7 +41,7 @@ $(document).ready(function(){
                  showGridline: false
                  }
             }
-        },grid:{} ,series:[{color:"#607B8B"}],title:{text:"Users/Devices Statistics",fontSize : 20,color:"#fff"}
+        },grid:{} ,series:[{}],title:{text:"Users/Devices Statistics",fontSize : 20,color:"#fff"}
     });
 });
 </script> 
