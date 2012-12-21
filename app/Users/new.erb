@@ -1,25 +1,23 @@
 <div data-role="page" data-theme="a">
 <script type="text/javascript">
 $(document).ready(function(){
-  var login_val
-  var pwd_val
+  var login_val=""
+  var pwd_val=""
   $('.user_login').val("");
   $('.user_pwd').val("");
  $('input[type=text],input[type=password]').change(function(){
    login_val=$('.user_login').attr("value");
    pwd_val=$('.user_pwd').attr("value");
   });
-$('input[type=text]').live("keypress",function(e){
- if(e.which == 32) {
-  // alert("test")
-  $('.user_login').attr("value","");
-  show_dialog_box('Notification','cannot allow spacebar','single','');
-  
- }
-});
+
  $('#create_btn').click(function(){
-   $.mobile.showPageLoadingMsg();
-   $.post("/app/Users/create",{ user_name : login_val, user_pwd : pwd_val})
+  $.mobile.showPageLoadingMsg();
+  if(login_val.charAt(0) == " "){
+   $.mobile.hidePageLoadingMsg();
+   show_dialog_box('Notification','cannot allow empty letter at first','single','');
+  }else{
+     $.post("/app/Users/create",{ user_name : login_val, user_pwd : pwd_val});
+ }
  });
 });
 </script>
