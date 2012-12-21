@@ -31,13 +31,15 @@ class RhoMonitorController < Rho::RhoController
     response= get_token(Rho::RhoConfig.server,Rho::RhoConfig.cookie)
     #puts response,"--------------token-------------------"
     Rho::RhoConfig.token = login_response["body"]
-    WebView.execute_js("$.mobile.hidePageLoadingMsg();")
+   
     # WebView.execute_js("$('.server_url').val('http://');")
     if login_response['status']=="ok"
       WebView.navigate(url_for :action => :dashboard )
     else 
       # render  :action => :login
+      WebView.execute_js("$.mobile.hidePageLoadingMsg();")
       WebView.execute_js("$('.server_url').val('http://');")
+      WebView.execute_js("$('.server_login').val('rhoadmin');")
       WebView.execute_js("show_dialog_box('Notification','Error Status...Please Try Again','single');")
     end
   end

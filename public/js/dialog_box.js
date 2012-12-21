@@ -66,7 +66,9 @@
       'OK': {
         click: function () { 
           $('#buttonoutput').text('Yes');
-          // $("input[type='text']").val("");
+          $(".user_login,.user_pwd").val("");
+          $('.server_url').val('http://');
+          $('.server_login').val('rhoadmin');
           if(callback_url){
             $.mobile.showPageLoadingMsg();
             window.location.href = callback_url;
